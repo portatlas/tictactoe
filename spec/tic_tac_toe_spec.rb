@@ -11,22 +11,17 @@ describe TicTacToe do
 
   describe '#move' do
     it 'will play the X symbol on to the first slot of the board given the index position 1' do
-      ttt.move(1)
-      played_board = ttt.board
-      expect(played_board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+      ttt = TicTacToe.new.move(1)
+      expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on slot 1, and O on slot 2' do
-      ttt.move(1)
-      ttt.move(2)
-      two_turn_board = ttt.board
-      expect(two_turn_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
+      ttt = TicTacToe.new.move(1).move(2)
+      expect(ttt.board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on slot 1, and O on slot 2, and X on slot 9' do
-      ttt.move(1)
-      ttt.move(2)
-      ttt.move(9)
+      ttt = TicTacToe.new.move(1).move(2).move(9)
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
     end
