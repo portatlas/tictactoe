@@ -43,4 +43,7 @@ class TicTacToe
     end
   end
 
+  def draw?
+    valid_slots == [] && !won?
+  end
 end
