@@ -165,10 +165,16 @@ describe TicTacToe do
   end
 
   describe '#draw?' do
-    it 'returns true if no onw wins and the board is full' do
+    it 'returns true if no one wins and the board is full' do
         ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
         expect(ttt.draw?).to eq true
     end
+
+    it 'returns false if the board has open slots' do
+        ttt.board = ["X", "O", "X", "X", "O", " ", "O", "X", "O"]
+        expect(ttt.draw?).to eq false
+    end
+
   end
 
 end
