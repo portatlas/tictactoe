@@ -73,7 +73,6 @@ class TicTacToe
 
   def optimal_move
     valid_slots.send(whose_turn(:max_by, :min_by)){|index| move(index).minimax}
-    binding.pry
   end
 
 end
