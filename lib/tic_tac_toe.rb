@@ -12,4 +12,8 @@ class TicTacToe
     puts " #{@board[6]} " + " #{@board[7]} " + " #{@board[8]} "
   end
 
+  def move(idx_pos, symbol)
+    @board[idx_pos - 1] = symbol
+  end
+
 end
