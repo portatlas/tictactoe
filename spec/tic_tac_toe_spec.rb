@@ -177,4 +177,22 @@ describe TicTacToe do
 
   end
 
+  describe '#game_over?' do
+    it 'returns true if someone won' do
+      ttt.board = ["X", "O", "X", "O", "X", "X", "O", "X", "X"]
+      expect(ttt.game_over?).to eq true
+    end
+
+    it 'returns true if there is a tie' do
+      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+      expect(ttt.game_over?).to eq true
+    end
+
+    it 'returns false if there is an open slot' do
+      ttt.board = ["X", "O", "X", "O", "X", " ", "O", "X", "X"]
+      expect(ttt.game_over?).to eq true
+    end
+
+  end
+
 end
