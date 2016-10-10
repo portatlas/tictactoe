@@ -29,6 +29,13 @@ describe TicTacToe do
   describe '#valid_slots' do
     it 'returns an array of index_positions that are blank spaces' do
       expect(ttt.valid_slots).to eq ([0, 1, 2, 3, 4, 5, 6, 7, 8])
+
+      ttt.move(1, "X")
+      ttt.move(2, "O")
+      ttt.move(9, "X")
+
+      played_board = ttt.board
+      expect(played_board).to eq([2,3,4,5,6,7])
     end
   end
 end
