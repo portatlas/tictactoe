@@ -50,4 +50,13 @@ class TicTacToe
   def game_over?
     won? != [] || draw?
   end
+
+  def winner
+    if game_over? && won?
+      winning_board = won?
+      @board[winning_board[0]] == "X" ? "X" : "O"
+    elsif draw?
+      nil
+    end
+  end
 end
