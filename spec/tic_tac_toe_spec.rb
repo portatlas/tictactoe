@@ -90,4 +90,11 @@ describe TicTacToe do
     end
   end
 
+  describe 'WIN_COMBOS' do
+    it 'is a nested array made up of 8 possible combinations of index positions of winning in tac toe' do
+      expect(TicTacToe::WIN_COMBOS.length).to eq 8
+    end
+
+  end
+
 end
