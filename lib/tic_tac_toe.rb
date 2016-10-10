@@ -13,9 +13,11 @@ class TicTacToe
     puts " #{@board[6]} " + " #{@board[7]} " + " #{@board[8]} "
   end
 
-  def move(idx_pos)
-    @board[idx_pos - 1] = @turn
-    @turn = whose_turn
+  def move(input)
+    if valid_move?(input)
+      @board[input - 1] = @turn
+      @turn = whose_turn
+    end
   end
 
   def valid_slots
