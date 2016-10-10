@@ -78,6 +78,3 @@ class TicTacToe
   end
 
 end
-
-ttt = TicTacToe.new
-ttt.show_board
