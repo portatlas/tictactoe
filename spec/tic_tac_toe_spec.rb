@@ -110,57 +110,64 @@ describe TicTacToe do
 
   describe '#won?' do
     context 'returns the winning indices' do
-      it "for the top row of the winning combination" do
+      it 'for the top row of the winning combination' do
         ttt.board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
         expect(ttt.won?).to eq [0,1,2]
       end
 
-      it "for the second row of the winning combination" do
+      it 'for the second row of the winning combination' do
         ttt.board = ["X", "O", "X", "O", "O", "O", "X", "X", "O"]
         expect(ttt.won?).to eq [3,4,5]
       end
 
-      it "for the bottom row of the winning combination" do
+      it 'for the bottom row of the winning combination' do
         ttt.board = ["X", "O", "X", "O", "X", "O", "X", "X", "X"]
         expect(ttt.won?).to eq [6,7,8]
       end
 
-      it "for the first column of the winning combination" do
+      it 'for the first column of the winning combination' do
         ttt.board = ["X", "O", "X", "X", "O", "X", "X", "O", "O"]
         expect(ttt.won?).to eq [0,3,6]
       end
 
-      it "for the second column of the winning combination" do
+      it 'for the second column of the winning combination' do
         ttt.board = ["O", "O", "X", "X", "O", "X", "X", "O", "O"]
         expect(ttt.won?).to eq [1,4,7]
       end
 
-      it "for the third column of the winning combination" do
+      it 'for the third column of the winning combination' do
         ttt.board = ["X", "O", "X", "O", "X", "X", "O", "X", "X"]
         expect(ttt.won?).to eq [2,5,8]
       end
 
-      it "for the north west to south east diagonal of the winning combination" do
+      it 'for the north west to south east diagonal of the winning combination' do
         ttt.board = ["O", "X", "X", "X", "O", "X", "X", "O", "O"]
         expect(ttt.won?).to eq [0,4,8]
       end
 
-      it "for the north east to south west of the winning combination" do
+      it 'for the north east to south west of the winning combination' do
         ttt.board = ["X", "O", "X", "O", "X", "X", "X", "O", "O"]
         expect(ttt.won?).to eq [2,4,6]
       end
     end
 
     context 'returns nil' do
-      it " if there is no winning combination" do
+      it 'if there is no winning combination' do
         ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
         expect(ttt.won?).to eq nil
       end
 
-      it "if there is an open slot" do
+      it 'if there is an open slot' do
         ttt.board = ["X", "O", "X", "X", " ", "O", "O", "X", "O"]
         expect(ttt.won?).to eq nil
       end
+    end
+  end
+
+  describe '#draw?' do
+    it 'returns true if no onw wins and the board is full' do
+        ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+        expect(ttt.draw?).to eq true
     end
   end
 
