@@ -1,13 +1,15 @@
+require 'pry'
+
 class TicTacToe
 
-  attr_accessor :board
+  attr_accessor :board, :turn
 
   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],
                 [0,3,6],[1,4,7],[2,5,8],
                 [0,4,8],[2,4,6]]
 
-  def initialize (turn = "X")
-    @board = Array.new(9, " ")
+  def initialize (board = Array.new(9, " "), turn = "X")
+    @board = board
     @turn = turn
   end
 
@@ -19,8 +21,9 @@ class TicTacToe
 
   def move(input)
     if valid_move?(input)
-      @board[input - 1] = @turn
-      @turn = whose_turn
+      played_move = TicTacToe.new(@board.dup, whose_turn("O", "X"))
+      played_move.board[input] = turn
+      played_move
     end
   end
 
@@ -29,11 +32,11 @@ class TicTacToe
   end
 
   def valid_move?(input)
-    valid_slots.include?(input - 1)
+    valid_slots.include?(input)
   end
 
-  def whose_turn
-    @turn == "X" ? "O" : "X"
+  def whose_turn(x, o)
+    turn == "X" ? x : o
   end
 
   def won?
@@ -59,4 +62,13 @@ class TicTacToe
       nil
     end
   end
+
+  def minimax(increment = 10)
+    return 1000 if winner == "X"
+    return -1000 if winner == "O"
+    return 0 if draw?
+
+    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(- increment, increment)
+  end
+
 end
