@@ -72,7 +72,6 @@ describe TicTacToe do
       ttt.move(1)
       expect(ttt.valid_move?(1)).to eq false
     end
-
   end
 
   describe '#whose_turn' do
@@ -174,7 +173,6 @@ describe TicTacToe do
         ttt.board = ["X", "O", "X", "X", "O", " ", "O", "X", "O"]
         expect(ttt.draw?).to eq false
     end
-
   end
 
   describe '#game_over?' do
@@ -192,7 +190,25 @@ describe TicTacToe do
       ttt.board = ["X", "O", "X", "O", "X", " ", "O", "X", "X"]
       expect(ttt.game_over?).to eq true
     end
+  end
+
+  describe '#winner' do
+    it 'returns the X as the winner' do
+      ttt.board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
+      expect(ttt.winner).to eq "X"
+    end
+
+    it 'returns the O as the winner' do
+      ttt.board = ["O", "O", "X", "X", "O", "X", "X", "O", "O"]
+      expect(ttt.winner).to eq "O"
+    end
+
+      it 'returns the nil if there is no winner' do
+      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+      expect(ttt.winner).to eq nil
+    end
 
   end
+
 
 end
