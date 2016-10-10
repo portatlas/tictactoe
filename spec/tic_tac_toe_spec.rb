@@ -106,7 +106,13 @@ describe TicTacToe do
     it 'provides the right combinations for diagnal wins' do
       expect(TicTacToe::WIN_COMBOS).to include([0,4,8] && [2,4,6])
     end
-
   end
+
+  # describe '#won?' do
+  #   it "returns true if there is a winner" do
+  #     ttt.board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
+  #     expect(ttt.won?).to eq true
+  #   end
+  # end
 
 end
