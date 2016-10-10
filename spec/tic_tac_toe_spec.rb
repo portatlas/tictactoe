@@ -10,17 +10,23 @@ describe TicTacToe do
   end
 
   describe '#move' do
-    it 'will play symbol on to the board given the index position of the board and the symbol to place' do
-      ttt.move(1, "X")
-
+    it 'will play the X symbol on to the first slot of the board given the index position 1' do
+      ttt.move(1)
       played_board = ttt.board
       expect(played_board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+    end
 
-      ttt.move(2, "O")
-      played_board = ttt.board
-      expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
+    it 'will play X on slot 1, and O on slot 2' do
+      ttt.move(1)
+      ttt.move(2)
+      two_turn_board = ttt.board
+      expect(two_turn_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
+    end
 
-      ttt.move(9, "X")
+    it 'will play X on slot 1, and O on slot 2, and X on slot 9' do
+      ttt.move(1)
+      ttt.move(2)
+      ttt.move(9)
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
     end
@@ -32,9 +38,9 @@ describe TicTacToe do
     end
 
     it 'returns an array of the index_positions where the slots are empty' do
-      ttt.move(1, "X")
-      ttt.move(2, "O")
-      ttt.move(9, "X")
+      ttt.move(1)
+      ttt.move(2)
+      ttt.move(9)
 
       played_board = ttt.board
       expect(ttt.valid_slots).to eq([2,3,4,5,6,7])
@@ -63,10 +69,25 @@ describe TicTacToe do
     end
 
     it 'returns false if the move is made on a slot that is taken' do
-      ttt.move(1, "X")
+      ttt.move(1)
       expect(ttt.valid_move?(1)).to eq false
     end
 
+  end
+
+  describe '#whose_turn' do
+    it 'returns the X for the most recent turn that went' do
+      ttt.move(1)
+      ttt.move(2)
+      ttt.move(9)
+      expect(ttt.whose_turn).to eq "X"
+    end
+
+    it 'returns the symbol O for the most recent turn that went' do
+      ttt.move(1)
+      ttt.move(2)
+      expect(ttt.whose_turn).to eq "O"
+    end
   end
 
 end
