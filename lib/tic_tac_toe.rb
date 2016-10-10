@@ -16,4 +16,8 @@ class TicTacToe
     @board[idx_pos - 1] = symbol
   end
 
+  def valid_slots
+    @board.each_with_index.map{|symbol, index| index if symbol==" "}.reject{|slots| slots == nil }
+  end
+
 end
