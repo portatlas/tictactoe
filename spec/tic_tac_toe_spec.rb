@@ -9,9 +9,8 @@ describe TicTacToe do
     end
   end
 
-
   describe '#move' do
-    it 'lets a player place the X symbol on to the board' do
+    it 'will play symbol on to the board given the index position of the board and the symbol to place' do
       ttt.move(1, "X")
 
       played_board = ttt.board
@@ -24,6 +23,12 @@ describe TicTacToe do
       ttt.move(9, "X")
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
+    end
+  end
+
+  describe '#valid_slots' do
+    it 'returns an array of index_positions that are blank spaces' do
+      expect(ttt.valid_slots).to eq ([0, 1, 2, 3, 4, 5, 6, 7, 8])
     end
   end
 end
