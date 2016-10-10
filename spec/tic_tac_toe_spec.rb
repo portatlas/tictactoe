@@ -10,17 +10,17 @@ describe TicTacToe do
   end
 
   describe '#move' do
-    it 'will play the X symbol on to the first slot of the board given the index position 1' do
+    it 'will place the X symbol on to the first slot of the board' do
       ttt = TicTacToe.new.move(0)
       expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'will play X on slot 1, and O on slot 2' do
+    it 'will play X on first slot, and O on second slot' do
       ttt = TicTacToe.new.move(0).move(1)
       expect(ttt.board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'will play X on slot 1, and O on slot 2, and X on slot 9' do
+    it 'will play X on first slot, and O on second slot, and X on the last slot' do
       ttt = TicTacToe.new.move(0).move(1).move(8)
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
@@ -51,7 +51,7 @@ describe TicTacToe do
       expect(ttt.valid_move?(1)).to eq true
     end
 
-    it 'returns true if the move is made on a valid_slot' do
+    it 'returns true if the move is made on a valid slot' do
       played_board = ["X", "O", "X", "O", "X", "X", " ", "X", "O"]
       ttt.board = played_board
       expect(ttt.valid_move?(6)).to eq true
