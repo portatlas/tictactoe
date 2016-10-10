@@ -2,6 +2,10 @@ class TicTacToe
 
   attr_accessor :board
 
+  WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],
+                [0,3,6],[1,4,7],[2,5,8],
+                [0,4,8],[2,4,6]]
+
   def initialize (turn = "X")
     @board = Array.new(9, " ")
     @turn = turn
@@ -32,4 +36,27 @@ class TicTacToe
     @turn == "X" ? "O" : "X"
   end
 
+  def won?
+    WIN_COMBOS.detect do |win_combo|
+      (@board[win_combo[0]]  == "X" && @board[win_combo[1]]  == "X" && @board[win_combo[2]]  == "X" ||
+      @board[win_combo[0]]  == "O" && @board[win_combo[1]]  == "O" && @board[win_combo[2]] == "O")
+    end
+  end
+
+  def draw?
+    valid_slots == [] && !won?
+  end
+
+  def game_over?
+    won? != [] || draw?
+  end
+
+  def winner
+    if game_over? && won?
+      winning_board = won?
+      @board[winning_board[0]] == "X" ? "X" : "O"
+    elsif draw?
+      nil
+    end
+  end
 end
