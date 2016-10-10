@@ -9,4 +9,21 @@ describe TicTacToe do
     end
   end
 
+
+  describe '#move' do
+    it 'lets a player place the X symbol on to the board' do
+      ttt.move(1, "X")
+
+      played_board = ttt.board
+      expect(played_board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+
+      ttt.move(2, "O")
+      played_board = ttt.board
+      expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
+
+      ttt.move(9, "X")
+      played_board = ttt.board
+      expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
+    end
+  end
 end
