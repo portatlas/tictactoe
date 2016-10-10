@@ -41,9 +41,32 @@ describe TicTacToe do
     end
 
     it 'returns an empty array when all the slots are taken' do
-      full_board = ["X", "X", "X", "X", "X", "X", "X", "X", "O"]
+      full_board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
       ttt.board = full_board
       expect(ttt.valid_slots).to eq([])
     end
   end
+
+  describe '#valid_move?' do
+    it 'returns true if the move is made on an empty board' do
+      expect(ttt.valid_move?(1)).to eq true
+    end
+
+    it 'returns true if the move is made on a valid_slot' do
+      played_board = ["X", "O", "X", "O", "X", "X", " ", "X", "O"]
+      ttt.board = played_board
+      expect(ttt.valid_move?(7)).to eq true
+    end
+
+    it 'returns false if the move is out of range' do
+      expect(ttt.valid_move?(100)).to eq false
+    end
+
+    it 'returns false if the move is made on a slot that is taken' do
+      ttt.move(1, "X")
+      expect(ttt.valid_move?(1)).to eq false
+    end
+
+  end
+
 end
