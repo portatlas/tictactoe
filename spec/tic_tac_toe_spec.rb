@@ -207,8 +207,6 @@ describe TicTacToe do
       ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
       expect(ttt.winner).to eq nil
     end
-
   end
-
 
 end

@@ -59,4 +59,10 @@ class TicTacToe
       nil
     end
   end
+
+  def play
+    until game_over?
+
+    end
+  end
 end
