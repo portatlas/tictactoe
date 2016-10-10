@@ -108,11 +108,46 @@ describe TicTacToe do
     end
   end
 
-  # describe '#won?' do
-  #   it "returns true if there is a winner" do
-  #     ttt.board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
-  #     expect(ttt.won?).to eq true
-  #   end
-  # end
+  describe '#won?' do
+    it "returns the winning indices for the top row of the winning combination" do
+      ttt.board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
+      expect(ttt.won?).to eq [0,1,2]
+    end
+
+    it "returns the winning indices for the second row of the winning combination" do
+      ttt.board = ["X", "O", "X", "O", "O", "O", "X", "X", "O"]
+      expect(ttt.won?).to eq [3,4,5]
+    end
+
+    it "returns the winning indices for the bottom row of the winning combination" do
+      ttt.board = ["X", "O", "X", "O", "X", "O", "X", "X", "X"]
+      expect(ttt.won?).to eq [6,7,8]
+    end
+
+    it "returns the winning indices for the first column of the winning combination" do
+      ttt.board = ["X", "O", "X", "X", "O", "X", "X", "O", "O"]
+      expect(ttt.won?).to eq [0,3,6]
+    end
+
+    it "returns the winning indices for the second column of the winning combination" do
+      ttt.board = ["O", "O", "X", "X", "O", "X", "X", "O", "O"]
+      expect(ttt.won?).to eq [1,4,7]
+    end
+
+    it "returns the winning indices for the third column of the winning combination" do
+      ttt.board = ["X", "O", "X", "O", "X", "X", "O", "X", "X"]
+      expect(ttt.won?).to eq [2,5,8]
+    end
+
+    it "returns the winning indices for the north west to south east diagonal of the winning combination" do
+      ttt.board = ["O", "X", "X", "X", "O", "X", "X", "O", "O"]
+      expect(ttt.won?).to eq [0,4,8]
+    end
+
+    it "returns the winning indices for the north east to south west of the winning combination" do
+      ttt.board = ["X", "O", "X", "O", "X", "X", "X", "O", "O"]
+      expect(ttt.won?).to eq [2,4,6]
+    end
+  end
 
 end
