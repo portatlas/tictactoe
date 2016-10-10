@@ -36,4 +36,11 @@ class TicTacToe
     @turn == "X" ? "O" : "X"
   end
 
+  def won?
+    WIN_COMBOS.detect do |win_combo|
+      (@board[win_combo[0]]  == "X" && @board[win_combo[1]]  == "X" && @board[win_combo[2]]  == "X" ||
+      @board[win_combo[0]]  == "O" && @board[win_combo[1]]  == "O" && @board[win_combo[2]] == "O")
+    end
+  end
+
 end
