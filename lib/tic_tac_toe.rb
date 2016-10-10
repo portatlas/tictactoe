@@ -20,4 +20,8 @@ class TicTacToe
     @board.each_with_index.map{|symbol, index| index if symbol==" "}.reject{|slots| slots == nil }
   end
 
+  def valid_move?(input)
+    valid_slots.include?(input - 1)
+  end
+
 end
