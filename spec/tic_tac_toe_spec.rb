@@ -11,17 +11,20 @@ describe TicTacToe do
 
   describe '#move' do
     it 'will place the X symbol on to the first slot of the board' do
-      ttt = TicTacToe.new.move(0)
+      ttt.move(0)
       expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on first slot, and O on second slot' do
-      ttt = TicTacToe.new.move(0).move(1)
+      ttt.move(0)
+      ttt.move(1)
       expect(ttt.board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on first slot, and O on second slot, and X on the last slot' do
-      ttt = TicTacToe.new.move(0).move(1).move(8)
+      ttt.move(0)
+      ttt.move(1)
+      ttt.move(8)
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
     end
@@ -70,12 +73,12 @@ describe TicTacToe do
   describe '#whose_turn' do
     it 'returns the X for the most recent turn that went' do
       ttt = TicTacToe.new.move(0).move(1).move(8)
-      expect(ttt.whose_turn("O", "X")).to eq "X"
+      expect(ttt.whose_turn).to eq "X"
     end
 
     it 'returns the symbol O for the most recent turn that went' do
       ttt = TicTacToe.new.move(0).move(1)
-      expect(ttt.whose_turn("O", "X")).to eq "O"
+      expect(ttt.whose_turn).to eq "O"
     end
   end
 
