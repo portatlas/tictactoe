@@ -95,6 +95,18 @@ describe TicTacToe do
       expect(TicTacToe::WIN_COMBOS.length).to eq 8
     end
 
+    it 'provides the right combinations for row wins' do
+      expect(TicTacToe::WIN_COMBOS).to include([0,1,2] && [3,4,5] && [6,7,8])
+    end
+
+    it 'provides the right combinations for column wins' do
+      expect(TicTacToe::WIN_COMBOS).to include([0,3,6] && [1,4,7] && [2,5,8])
+    end
+
+    it 'provides the right combinations for diagnal wins' do
+      expect(TicTacToe::WIN_COMBOS).to include([0,4,8] && [2,4,6])
+    end
+
   end
 
 end
