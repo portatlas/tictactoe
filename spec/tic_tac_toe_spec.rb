@@ -33,9 +33,7 @@ describe TicTacToe do
     end
 
     it 'returns an array of the index_positions where the slots are empty' do
-      ttt.move(1)
-      ttt.move(2)
-      ttt.move(9)
+      ttt = TicTacToe.new.move(1).move(2).move(9)
 
       played_board = ttt.board
       expect(ttt.valid_slots).to eq([2,3,4,5,6,7])
@@ -64,23 +62,20 @@ describe TicTacToe do
     end
 
     it 'returns false if the move is made on a slot that is taken' do
-      ttt.move(1)
+      ttt = TicTacToe.new.move(1)
       expect(ttt.valid_move?(1)).to eq false
     end
   end
 
   describe '#whose_turn' do
     it 'returns the X for the most recent turn that went' do
-      ttt.move(1)
-      ttt.move(2)
-      ttt.move(9)
-      expect(ttt.whose_turn).to eq "X"
+      ttt = TicTacToe.new.move(1).move(2).move(9)
+      expect(ttt.whose_turn("O", "X")).to eq "X"
     end
 
     it 'returns the symbol O for the most recent turn that went' do
-      ttt.move(1)
-      ttt.move(2)
-      expect(ttt.whose_turn).to eq "O"
+      ttt = TicTacToe.new.move(1).move(2)
+      expect(ttt.whose_turn("O", "X")).to eq "O"
     end
   end
 
