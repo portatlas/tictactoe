@@ -14,17 +14,17 @@ class TicTacToe
   end
 
   def show_board
-    puts " #{@board[0]} " + " #{@board[1]} " + " #{@board[2]} "
-    puts " #{@board[3]} " + " #{@board[4]} " + " #{@board[5]} "
-    puts " #{@board[6]} " + " #{@board[7]} " + " #{@board[8]} "
+    puts " #{@board[0]} " + "|" + " #{@board[1]} " + "|" + " #{@board[2]} "
+    puts "- - - - - -"
+    puts " #{@board[3]} " + "|" + " #{@board[4]} " + "|" + " #{@board[5]} "
+    puts "- - - - - -"
+    puts " #{@board[6]} " + "|" + " #{@board[7]} " + "|" + " #{@board[8]} "
   end
 
   def move(input)
-    if valid_move?(input)
       played_move = TicTacToe.new(@board.dup, whose_turn("O", "X"))
-      played_move.board[input] = turn
+      played_move.board[input.to_i] = turn
       played_move
-    end
   end
 
   def valid_slots
@@ -39,24 +39,23 @@ class TicTacToe
     turn == "X" ? x : o
   end
 
-  def won?
+  def won?(turn)
     WIN_COMBOS.detect do |win_combo|
-      (@board[win_combo[0]]  == "X" && @board[win_combo[1]]  == "X" && @board[win_combo[2]]  == "X" ||
-      @board[win_combo[0]]  == "O" && @board[win_combo[1]]  == "O" && @board[win_combo[2]] == "O")
+      (@board[win_combo[0]]  == turn && @board[win_combo[1]]  == turn && @board[win_combo[2]]  == turn )
     end
   end
 
   def draw?
-    valid_slots == [] && !won?
+    valid_slots == [] && won?(turn) == nil
   end
 
   def game_over?
-    won? != [] || draw?
+    valid_slots == []
   end
 
   def winner
-    if game_over? && won?
-      winning_board = won?
+    if game_over? && won?(turn)
+      winning_board = won?(turn)
       @board[winning_board[0]] == "X" ? "X" : "O"
     elsif draw?
       nil
@@ -64,11 +63,11 @@ class TicTacToe
   end
 
   def minimax(increment = 10)
-    return 1000 if winner == "X"
-    return -1000 if winner == "O"
+    return 1000 if won?("X")
+    return -1000 if won?("O")
     return 0 if draw?
 
-    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(- increment, increment)
+    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(-increment, increment)
   end
 
   def optimal_move
@@ -76,3 +75,5 @@ class TicTacToe
   end
 
 end
+
+
