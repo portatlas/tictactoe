@@ -22,11 +22,9 @@ class TicTacToe
   end
 
   def move(input)
-    if valid_move?(input.to_i)
       played_move = TicTacToe.new(@board.dup, whose_turn("O", "X"))
       played_move.board[input.to_i] = turn
       played_move
-    end
   end
 
   def valid_slots
@@ -80,3 +78,34 @@ class TicTacToe
 end
 
 
+class Game
+
+  def initialize
+    @ttt = TicTacToe.new
+  end
+
+  def play
+    puts "Welcome to Tic Tac toe"
+    @ttt.show_board
+    puts "Enter a number from 0 to 8"
+    user_input = gets.chomp
+    @ttt = @ttt.move(user_input)
+    p "these are the valid slots"
+    p @ttt.valid_slots
+    # p "What is this -----"
+    # p ! @ttt.valid_slots.empty?
+    # p "What is this -----"
+    if ! @ttt.valid_slots.empty? then
+        index = @ttt.optimal_move
+        p "----- this is the index"
+        p index
+        p "----- this is the index"
+        @ttt.move(index).show_board
+      end
+  end
+
+end
+
+
+new_game = Game.new
+new_game.play
