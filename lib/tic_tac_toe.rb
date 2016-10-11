@@ -11,6 +11,7 @@ class TicTacToe
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
     @turn = turn
+    # binding.pry
   end
 
   def show_board
@@ -39,24 +40,23 @@ class TicTacToe
     turn == "X" ? x : o
   end
 
-  def won?
+  def won?(turn)
     WIN_COMBOS.detect do |win_combo|
-      (@board[win_combo[0]]  == "X" && @board[win_combo[1]]  == "X" && @board[win_combo[2]]  == "X" ||
-      @board[win_combo[0]]  == "O" && @board[win_combo[1]]  == "O" && @board[win_combo[2]] == "O")
+      (@board[win_combo[0]]  == turn && @board[win_combo[1]]  == turn && @board[win_combo[2]]  == turn )
     end
   end
 
   def draw?
-    valid_slots == [] && !won?
+    valid_slots == [] && won?(turn) == nil
   end
 
   def game_over?
-    won? != [] || draw?
+    valid_slots == []
   end
 
   def winner
-    if game_over? && won?
-      winning_board = won?
+    if game_over? && won?(turn)
+      winning_board = won?(turn)
       @board[winning_board[0]] == "X" ? "X" : "O"
     elsif draw?
       nil
@@ -64,11 +64,11 @@ class TicTacToe
   end
 
   def minimax(increment = 10)
-    return 1000 if winner == "X"
-    return -1000 if winner == "O"
+    return 1000 if won?("X")
+    return -1000 if won?("O")
     return 0 if draw?
 
-    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(- increment, increment)
+    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(-increment, increment)
   end
 
   def optimal_move
@@ -78,34 +78,35 @@ class TicTacToe
 end
 
 
-class Game
+# class Game
 
-  def initialize
-    @ttt = TicTacToe.new
-  end
+#   def initialize
+#     @ttt = TicTacToe.new
+#   end
 
-  def play
-    puts "Welcome to Tic Tac toe"
-    @ttt.show_board
-    puts "Enter a number from 0 to 8"
-    user_input = gets.chomp
-    @ttt = @ttt.move(user_input)
-    p "these are the valid slots"
-    p @ttt.valid_slots
-    # p "What is this -----"
-    # p ! @ttt.valid_slots.empty?
-    # p "What is this -----"
-    if ! @ttt.valid_slots.empty? then
-        index = @ttt.optimal_move
-        p "----- this is the index"
-        p index
-        p "----- this is the index"
-        @ttt.move(index).show_board
-      end
-  end
+#   def play
+#     puts "Welcome to Tic Tac toe"
+#     @ttt.show_board
+#     puts "Enter a number from 0 to 8"
+#     while !@ttt.game_over?
+#       user_input = gets.chomp
+#       @ttt = @ttt.move(user_input)
+#       p "these are the valid slots"
+#       p @ttt.valid_slots
+#       if ! @ttt.valid_slots.empty? then
+#         index = @ttt.optimal_move
+#         p "----- this is the index"
+#         p index
+#         p "----- this is how the board looks as an array"
+#         p @ttt.board
+#         @ttt = @ttt.move(index)
+#         @ttt.show_board
+#       end
+#     end
+#   end
 
-end
+# end
 
 
-new_game = Game.new
-new_game.play
+# new_game = Game.new
+# new_game.play
