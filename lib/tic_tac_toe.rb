@@ -11,7 +11,6 @@ class TicTacToe
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
     @turn = turn
-    # binding.pry
   end
 
   def show_board
