@@ -5,12 +5,12 @@ describe TicTacToe do
 
   describe '#minimax' do
     context 'a player wins' do
-      it 'returns 1000 if it is a winning board is X' do
+      it 'returns 1000 if it is a winning board and X placed a winning combo' do
         board = ["X", "X", "X", "O", "X", "X", "O", "X", "O"]
         expect(TicTacToe.new(board, "X").minimax).to eq 1000
       end
 
-      it 'returns -1000 if it is a winning board is O' do
+      it 'returns -1000 if it is a winning board and O placed a winning combo' do
         board = ["X", "X", "O", "O", "X", "X", "O", "O", "O"]
         expect(TicTacToe.new(board, "O").minimax).to eq -1000
       end
@@ -24,12 +24,13 @@ describe TicTacToe do
     end
 
     context 'one move away from win' do
-      it 'returns 990 if it is a winning board is X' do
-        board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
-        expect(TicTacToe.new(board, "X").minimax).to eq 990
+      it 'returns 990 if it is a winning board for X and is one move away' do
+        # test_board = ["X", "X", " ", " ", " ", " ", " ", " ", " "]
+        # ttt = TicTacToe.new.move(0).move(8).move(1)
+        expect(TicTacToe.new(["X", "X", " ", " ", " ", " ", " ", " ", " "], "X").minimax).to eq 990
       end
 
-      it 'returns -990 if it is a winning board is O' do
+      it 'returns -990 if it is a winning board for O and is one move away' do
         board = [" ", " ", " ", " ", " ", " ", " ", "O", "O"]
         expect(TicTacToe.new(board, "O").minimax).to eq -990
       end
