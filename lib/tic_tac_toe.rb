@@ -78,35 +78,3 @@ class TicTacToe
 end
 
 
-# class Game
-
-#   def initialize
-#     @ttt = TicTacToe.new
-#   end
-
-#   def play
-#     puts "Welcome to Tic Tac toe"
-#     @ttt.show_board
-#     puts "Enter a number from 0 to 8"
-#     while !@ttt.game_over?
-#       user_input = gets.chomp
-#       @ttt = @ttt.move(user_input)
-#       p "these are the valid slots"
-#       p @ttt.valid_slots
-#       if ! @ttt.valid_slots.empty? then
-#         index = @ttt.optimal_move
-#         p "----- this is the index"
-#         p index
-#         p "----- this is how the board looks as an array"
-#         p @ttt.board
-#         @ttt = @ttt.move(index)
-#         @ttt.show_board
-#       end
-#     end
-#   end
-
-# end
-
-
-# new_game = Game.new
-# new_game.play
