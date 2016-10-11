@@ -22,9 +22,9 @@ class TicTacToe
   end
 
   def move(input)
-    if valid_move?(input)
+    if valid_move?(input.to_i)
       played_move = TicTacToe.new(@board.dup, whose_turn("O", "X"))
-      played_move.board[input] = turn
+      played_move.board[input.to_i] = turn
       played_move
     end
   end
@@ -78,3 +78,5 @@ class TicTacToe
   end
 
 end
+
+
