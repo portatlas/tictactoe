@@ -27,22 +27,21 @@ describe TicTacToe do
     end
   end
 
-  describe '#valid_slots' do
+  describe ' #valid_slots' do
     it 'returns an array of all the index_positions of the board when the board is empty' do
       expect(ttt.valid_slots).to eq ([0, 1, 2, 3, 4, 5, 6, 7, 8])
     end
 
     it 'returns an array of the index_positions where the slots are empty' do
-      ttt = TicTacToe.new.move(0).move(1).move(8)
+      played_board = TicTacToe.new.move(0).move(1).move(8)
 
-      played_board = ttt.board
-      expect(ttt.valid_slots).to eq([2,3,4,5,6,7])
+      expect(played_board.valid_slots).to eq([2,3,4,5,6,7])
     end
 
     it 'returns an empty array when all the slots are taken' do
-      full_board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-      ttt.board = full_board
-      expect(ttt.valid_slots).to eq([])
+      full_board = TicTacToe.new.move(0).move(1).move(8).move(2).move(3).move(5).move(4).move(6).move(7)
+
+      expect(full_board.valid_slots).to eq([])
     end
   end
 
