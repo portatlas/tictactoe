@@ -10,21 +10,18 @@ describe TicTacToe do
   end
 
   describe '#move' do
-    it 'will place the X symbol on to the first slot of the board' do
-      ttt.move(0)
+    it 'will play the X symbol on to the first slot of the board given the index position 1' do
+      ttt = TicTacToe.new.move(0)
       expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'will play X on first slot, and O on second slot' do
-      ttt.move(0)
-      ttt.move(1)
+    it 'will play X on slot 1, and O on slot 2' do
+      ttt = TicTacToe.new.move(0).move(1)
       expect(ttt.board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
     end
 
-    it 'will play X on first slot, and O on second slot, and X on the last slot' do
-      ttt.move(0)
-      ttt.move(1)
-      ttt.move(8)
+    it 'will play X on slot 1, and O on slot 2, and X on slot 9' do
+      ttt = TicTacToe.new.move(0).move(1).move(8)
       played_board = ttt.board
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
     end
@@ -54,7 +51,7 @@ describe TicTacToe do
       expect(ttt.valid_move?(1)).to eq true
     end
 
-    it 'returns true if the move is made on a valid slot' do
+    it 'returns true if the move is made on a valid_slot' do
       played_board = ["X", "O", "X", "O", "X", "X", " ", "X", "O"]
       ttt.board = played_board
       expect(ttt.valid_move?(6)).to eq true
@@ -73,12 +70,12 @@ describe TicTacToe do
   describe '#whose_turn' do
     it 'returns the X for the most recent turn that went' do
       ttt = TicTacToe.new.move(0).move(1).move(8)
-      expect(ttt.whose_turn).to eq "X"
+      expect(ttt.whose_turn("O", "X")).to eq "X"
     end
 
     it 'returns the symbol O for the most recent turn that went' do
       ttt = TicTacToe.new.move(0).move(1)
-      expect(ttt.whose_turn).to eq "O"
+      expect(ttt.whose_turn("O", "X")).to eq "O"
     end
   end
 
@@ -200,6 +197,8 @@ describe TicTacToe do
       ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
       expect(ttt.winner).to eq nil
     end
+
   end
+
 
 end
