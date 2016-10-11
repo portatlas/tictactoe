@@ -4,13 +4,13 @@ describe TicTacToe do
   let(:ttt){TicTacToe.new}
 
   describe '#initialize' do
-    it 'creates a empty board represented by an array of 9 slots' do
+    it 'creates a empty board represented by an array of 9 elements' do
       expect(ttt.board).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " "])
     end
   end
 
   describe '#move' do
-    it 'will play the X symbol on to the first slot of the board given the index position 1' do
+    it 'will play X on slot 1' do
       ttt = TicTacToe.new.move(0)
       expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
@@ -50,7 +50,7 @@ describe TicTacToe do
       expect(ttt.valid_move?(1)).to eq true
     end
 
-    it 'returns true if the move is made on a valid_slot' do
+    it 'returns true if the move is made on a valid slot' do
       played_board = ["X", "O", "X", "O", "X", "X", " ", "X", "O"]
       ttt.board = played_board
       expect(ttt.valid_move?(6)).to eq true
@@ -67,19 +67,19 @@ describe TicTacToe do
   end
 
   describe '#whose_turn' do
-    it 'returns the X for the most recent turn that went' do
+    it 'returns X when it is Xs turn' do
       ttt = TicTacToe.new.move(0).move(1).move(8)
       expect(ttt.whose_turn("O", "X")).to eq "X"
     end
 
-    it 'returns the symbol O for the most recent turn that went' do
+    it 'returns O when it is Os turn' do
       ttt = TicTacToe.new.move(0).move(1)
       expect(ttt.whose_turn("O", "X")).to eq "O"
     end
   end
 
   describe 'WIN_COMBOS' do
-    it 'is a nested array made up of 8 possible combinations of index positions of winning in tac toe' do
+    it 'is a nested array made up of 8 possible combinations of winning index positions' do
       expect(TicTacToe::WIN_COMBOS.length).to eq 8
     end
 
