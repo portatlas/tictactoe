@@ -9,6 +9,11 @@ class Game
     @gametype = gametype
   end
 
+  def display_intro_msg
+    puts "Welcome to #{gametype.desc[:name]} \n#{gametype.desc[:instructions]}"
+    puts gametype.show_board
+  end
+
   def prompt_user_for_input
     return "Enter a number #{@gametype.valid_slots.join(", ")} to place an X"
   end
@@ -42,12 +47,10 @@ class Game
   end
 
   def play
-    puts "Welcome to Tic Tac toe"
-    gametype.show_board
+    display_intro_msg
     while !gametype.game_over?
       puts prompt_user_for_input
-      input = get_user_input
-      puts alternate_move(input)
+      puts alternate_move(get_user_input)
     end
   end
 
