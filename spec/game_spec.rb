@@ -11,4 +11,11 @@ describe Game do
     end
   end
 
+  describe  '#prompt_user_for_input' do
+    it 'ask users to input the position on available spots where they want to place an X' do
+      expect(new_game.prompt_user_for_inpt).to include("Enter a number 0, 1, 2, 3, 4, 5, 6, 7, 8 to place an X")
+    end
+  end
+
 end
+
