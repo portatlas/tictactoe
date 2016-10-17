@@ -181,19 +181,25 @@ describe TicTacToe do
     end
 
     it 'returns false if the board has open slots' do
-        ttt.board = ["X", "O", "X", "X", "O", " ", "O", "X", "O"]
+        ttt.board = ["X", "O", "X",
+                      "X", "O", " ",
+                      "O", "X", "O"]
         expect(ttt.draw?).to eq false
     end
   end
 
   describe ' #game_over?' do
     it 'returns true if someone won' do
-      ttt.board = ["X", "O", "X", "O", "X", "X", "O", "X", "X"]
+      ttt.board = ["X", "O", "X",
+                   "O", "X", "X",
+                   "O", "X", "X"]
       expect(ttt.game_over?).to eq true
     end
 
     it 'returns true if there is a tie' do
-      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+      ttt.board = ["X", "O", "X",
+                   "X", "O", "O",
+                   "O", "X", "O"]
       expect(ttt.game_over?).to eq true
     end
 
@@ -222,7 +228,9 @@ describe TicTacToe do
     end
 
       it 'returns nil if there is no winner' do
-      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+      ttt.board = ["X", "O", "X",
+                   "X", "O", "O",
+                   "O", "X", "O"]
       expect(ttt.winner).to eq nil
     end
 
