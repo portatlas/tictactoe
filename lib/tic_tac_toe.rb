@@ -51,7 +51,7 @@ class TicTacToe
   end
 
   def game_over?
-    valid_slots == [] || won?("X") || won?("O")
+    valid_slots == [] || won?("X") || won?("O") ? true : false
   end
 
   def winner
