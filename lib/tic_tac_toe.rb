@@ -46,21 +46,22 @@ class TicTacToe
   end
 
   def draw?
-    valid_slots == [] && won?(turn) == nil
+    valid_slots == []
+    # && won?(turn) == nil
   end
 
   def game_over?
     valid_slots == [] || won?("X") || won?("O")
   end
 
-  # def winner
-  #   if game_over? && won?(turn)
-  #     winning_board = won?(turn)
-  #     @board[winning_board[0]] == "X" ? "X" : "O"
-  #   elsif draw?
-  #     nil
-  #   end
-  # end
+  def winner
+    if game_over? && won?(turn)
+      winning_board = won?(turn)
+      @board[winning_board[0]] == "X" ? "X" : "O"
+    elsif draw?
+      nil
+    end
+  end
 
   def minimax(increment = 10)
     return 1000 if won?("X")
