@@ -3,12 +3,17 @@ require_relative 'tic_tac_toe'
 
 class Game
 
+  attr_accessor :ttt
+
   def initialize(tictactoe = nil)
     @ttt = tictactoe
   end
 
+  def prompt_user_for_input
+    return "Enter a number #{@ttt.valid_slots.join(", ")} to place an X"
+  end
+
   def get_user_input
-    puts "Enter a number #{@ttt.valid_slots.join(", ")} to place an X"
     user_input = gets.chomp.to_i
   end
 
@@ -16,6 +21,7 @@ class Game
     puts "Welcome to Tic Tac toe"
     @ttt.show_board
     while !@ttt.game_over?
+      puts prompt_user_for_input
       input = get_user_input
       if @ttt.valid_slots.include?(input)
         @ttt = @ttt.move(input)
