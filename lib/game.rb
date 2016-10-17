@@ -2,8 +2,8 @@ require_relative 'tic_tac_toe'
 
 class Game
 
-  def initialize
-    @ttt = TicTacToe.new
+  def initialize(tictactoe = nil)
+    @ttt = tictactoe
   end
 
   def get_user_input
