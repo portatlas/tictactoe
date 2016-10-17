@@ -8,7 +8,7 @@ describe Game do
 
   describe '#initialize' do
     it 'with a new instance of TicTacToe' do
-      expect(new_game.instance_variable_get(:@ttt)).to eq(ttt)
+      expect(new_game.gametype).to eq(ttt)
     end
   end
 
