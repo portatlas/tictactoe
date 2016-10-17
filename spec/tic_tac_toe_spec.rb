@@ -198,7 +198,9 @@ describe TicTacToe do
     end
 
     it 'returns false if there is an open slot' do
-      ttt.board = ["X", "O", "X", "O", "X", " ", "O", "X", "X"]
+      ttt.board = ["X", "O", "X",
+                   "O", " ", " ",
+                   "O", "X", "X"]
       expect(ttt.game_over?).to eq false
     end
   end
