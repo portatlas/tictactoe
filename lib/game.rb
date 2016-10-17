@@ -17,17 +17,11 @@ class Game
     user_input = gets.chomp.to_i
   end
 
-  def play
-    puts "Welcome to Tic Tac toe"
-    @ttt.show_board
-    while !@ttt.game_over?
-      puts prompt_user_for_input
-      input = get_user_input
-
-      if @ttt.valid_slots.include?(input)
+  def alternate_move(input)
+    if @ttt.valid_slots.include?(input)
         @ttt = @ttt.move(input)
 
-        if ! @ttt.valid_slots.empty? then
+        if ! @ttt.valid_slots.empty?
           index = @ttt.optimal_move
           @ttt = @ttt.move(index)
           @ttt.show_board
@@ -44,7 +38,15 @@ class Game
       else
         puts "Invalid input try again"
       end
+  end
 
+  def play
+    puts "Welcome to Tic Tac toe"
+    @ttt.show_board
+    while !@ttt.game_over?
+      puts prompt_user_for_input
+      input = get_user_input
+      puts alternate_move(input)
     end
   end
 
