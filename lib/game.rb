@@ -23,26 +23,28 @@ class Game
     while !@ttt.game_over?
       puts prompt_user_for_input
       input = get_user_input
+
       if @ttt.valid_slots.include?(input)
         @ttt = @ttt.move(input)
+
         if ! @ttt.valid_slots.empty? then
           index = @ttt.optimal_move
           @ttt = @ttt.move(index)
           @ttt.show_board
         end
+
         if @ttt.won?("X")
           puts ("You won!")
-          break
         elsif @ttt.won?("O")
           puts ("Computer won!")
-          break
         elsif @ttt.draw?
           puts ("It's a draw!")
-          break
         end
+
       else
         puts "Invalid input try again"
       end
+
     end
   end
 
