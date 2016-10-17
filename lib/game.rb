@@ -3,14 +3,14 @@ require_relative 'tic_tac_toe'
 
 class Game
 
-  attr_accessor :ttt
+  attr_accessor :gametype
 
-  def initialize(tictactoe = nil)
-    @ttt = tictactoe
+  def initialize(gametype = nil)
+    @gametype = gametype
   end
 
   def prompt_user_for_input
-    return "Enter a number #{@ttt.valid_slots.join(", ")} to place an X"
+    return "Enter a number #{@gametype.valid_slots.join(", ")} to place an X"
   end
 
   def get_user_input
@@ -18,32 +18,33 @@ class Game
   end
 
   def alternate_move(input)
-    if @ttt.valid_slots.include?(input)
-        @ttt = @ttt.move(input)
+    if @gametype.valid_slots.include?(input)
+        @gametype = @gametype.move(input)
 
-        if ! @ttt.valid_slots.empty?
-          index = @ttt.optimal_move
-          @ttt = @ttt.move(index)
-          @ttt.show_board
+        if ! @gametype.valid_slots.empty?
+          index = @gametype.optimal_move
+          @gametype = @gametype.move(index)
+          @gametype.show_board
         end
 
-        if @ttt.won?("X")
+        if @gametype.won?("X")
           puts ("You won!")
-        elsif @ttt.won?("O")
+        elsif @gametype.won?("O")
           puts ("Computer won!")
-        elsif @ttt.draw?
+        elsif @gametype.draw?
           puts ("It's a draw!")
         end
 
-      else
-        puts "Invalid input try again"
-      end
+    else
+      puts "Invalid input try again"
+    end
+
   end
 
   def play
     puts "Welcome to Tic Tac toe"
-    @ttt.show_board
-    while !@ttt.game_over?
+    gametype.show_board
+    while !gametype.game_over?
       puts prompt_user_for_input
       input = get_user_input
       puts alternate_move(input)
