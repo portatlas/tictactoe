@@ -4,9 +4,9 @@ class Game
 
   attr_accessor :gametype, :ui
 
-  def initialize(gametype = nil, ui = nil)
-    @ui = ui
-    @gametype = gametype
+  def initialize(args)
+    @ui = args.fetch(:ui, nil)
+    @gametype = args.fetch(:gametype, nil)
   end
 
   def user_move(index_position)
