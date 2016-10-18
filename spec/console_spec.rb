@@ -1,7 +1,7 @@
 require 'game'
-require './lib/console.rb'
-require './lib/ui.rb'
-require './lib/tictactoe.rb'
+require 'console'
+require 'ui'
+require 'tictactoe'
 
 describe Console do
   let(:gametype){TicTacToe.new}
@@ -79,7 +79,7 @@ describe Console do
       expect(output).to include ("Computer won!")
     end
 
-    it 'returns Computer won! if the user won the game' do
+    it 'returns It is a draw! if no one won the game' do
       draw_board = ["X", "O", "O",
                     "O", "X", "X",
                     "X", "O", "O"]

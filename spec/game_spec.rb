@@ -19,14 +19,26 @@ describe Game do
     end
   end
 
-  # describe '#comp_move' do
-  #   it 'allows the computer to make a move if their is an empty slot' do
-  #     allow(new_game).to receive(:gets).and_return("0")
-  #     expect(new_game.comp_move.board).to eq(["X", " ", " ",
-  #                                             " ", "O", " ",
-  #                                             " ", " ", " "])
-  #   end
-  # end
+  describe '#comp_move' do
+    it 'returns a TicTacToe board if a move is made' do
+      played_ttt = TicTacToe.new
+      played_ttt.board = ["X", " ", " ",
+                          " ", " ", " ",
+                          " ", " ", " "]
+      first_move_game = Game.new({gametype: played_ttt, ui: ui})
+      comp_move = first_move_game.comp_move
+      expect(comp_move).to be_an_instance_of(TicTacToe)
+    end
+
+    it 'returns nil if comp move was not made' do
+      played_ttt = TicTacToe.new
+      played_ttt.board = ["X", "O", "X",
+                          "O", "X", "O",
+                          "O", "X", "O"]
+      completed_game = Game.new({gametype: played_ttt, ui: ui})
+      expect(completed_game.comp_move).to eq nil
+    end
+  end
 
   describe '#alternate_move' do
     it 'plays the first turn of the game' do
@@ -40,9 +52,19 @@ describe Game do
   end
 
   describe '#play' do
-    it 'user can enter their moves' do
-      allow(new_game).to receive(:gets).and_return("0", "1", "2")
+    it 'continues to play as long as the game is not over' do
+      expect(new_game).to receive(:play)
+      new_game.play
     end
+
+    it 'stops playing when the game is not over' do
+      played_ttt = TicTacToe.new
+      played_ttt.board = ["X", "O", "X",
+                          "O", "X", "O",
+                          "O", "X", "O"]
+        completed_game = Game.new({gametype: played_ttt, ui: ui})
+        expect(completed_game).not_to receive(:play)
+      end
   end
 
 end
