@@ -8,7 +8,7 @@ describe Game do
   let(:gametype){TicTacToe.new}
   let(:io){Console.new}
   let(:ui){Ui.new(io)}
-  let(:new_game){Game.new(gametype, ui)}
+  let(:new_game){Game.new({gametype: gametype, ui: ui})}
 
   describe '#initialize' do
     it 'with a new instance of TicTacToe' do
