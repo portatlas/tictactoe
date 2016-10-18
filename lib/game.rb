@@ -15,7 +15,7 @@ class Game
   end
 
   def prompt_user_for_input
-    return "Enter a number #{@gametype.valid_slots.join(", ")} to place an X"
+    "Enter a number #{@gametype.valid_slots.join(", ")} to place an X"
   end
 
   def get_user_input
