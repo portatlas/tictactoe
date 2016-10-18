@@ -50,6 +50,13 @@ describe Console do
     end
   end
 
+  describe '#get_user_input' do
+    it 'should return the users input' do
+      allow(io).to receive(:gets).and_return("1")
+      expect(io.get_user_input).to be(1)
+    end
+  end
+
 
   describe '#winner' do
     it 'returns You won! if the user won the game' do
