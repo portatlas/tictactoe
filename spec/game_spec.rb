@@ -48,6 +48,52 @@ describe Game do
     end
   end
 
+  describe '#user_move' do
+    it 'allows users to make a move if the user input is valid' do
+      new_game.gametype.board = ["X", "O", " ",
+                                 " ", " ", " ",
+                                 " ", " ", " "]
+      expect(new_game.user_move(3).board).to eq(["X", "O", " ",
+                                                 "X", " ", " ",
+                                                 " ", " ", " "])
+    end
+
+    it 'does not allow user to make a move and ask for a valid input when the input is invalid' do
+      new_game.gametype.board = ["X", "O", " ",
+                                 " ", " ", " ",
+                                 " ", " ", " "]
+      expect(new_game.user_move(0)).to eq("Invalid input try again")
+    end
+  end
+
+  describe '#comp_move' do
+    it 'allows the computer to make a move if their is an empty slot' do
+      new_game.user_move(0)
+      expect(new_game.comp_move.board).to eq(["X", " ", " ",
+                                              " ", "O", " ",
+                                              " ", " ", " "])
+    end
+  end
+
+  describe '#alternate_move' do
+    it 'plays the first turn of the game' do
+      new_game.alternate_move(0)
+      board_after_first_move = new_game.gametype.board
+
+      expect(board_after_first_move).to match_array(["X", " ", " ",
+                                                     " ", "O", " ",
+                                                     " ", " ", " "])
+    end
+  end
+
+  describe '#play' do
+    it 'stops playing when there is a winner or a draw' do
+      allow(new_game).to receive(:gets).and_return("0")
+      expect(new_game).to receive(:gets).at_least(:once).and_return("0")
+
+      new_game.play
+    end
+  end
 
 end
 
