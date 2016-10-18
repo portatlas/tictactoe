@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+# require_relative '../lib/tictactoe.rb'
+require 'tictactoe'
+require 'game'
+require 'console'
+require 'ui'
+
+ttt = TicTacToe.new
+io = Console.new
+ui = Ui.new(io)
+new_game = Game.new({gametype: ttt, ui: ui})
+new_game.play

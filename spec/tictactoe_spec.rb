@@ -1,4 +1,4 @@
-require_relative '../lib/tic_tac_toe.rb'
+require 'tictactoe'
 
 describe TicTacToe do
   let(:ttt){TicTacToe.new}

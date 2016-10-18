@@ -1,4 +1,6 @@
-require_relative 'tic_tac_toe'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
+require 'tictactoe'
 
 class Game
 

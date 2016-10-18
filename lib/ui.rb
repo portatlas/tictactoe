@@ -1,4 +1,6 @@
-require_relative 'console'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
+require 'console'
 
 class Ui
   attr_reader :io

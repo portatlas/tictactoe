@@ -1,7 +1,7 @@
-require './lib/game.rb'
+require 'game'
 require './lib/console.rb'
 require './lib/ui.rb'
-require './lib/tic_tac_toe.rb'
+require './lib/tictactoe.rb'
 
 describe Console do
   let(:gametype){TicTacToe.new}
