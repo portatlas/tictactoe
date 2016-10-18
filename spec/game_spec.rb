@@ -1,10 +1,14 @@
 require 'stringio'
 require './lib/game.rb'
 require './lib/tic_tac_toe.rb'
+require './lib/console.rb'
+require './lib/ui.rb'
 
 describe Game do
   let(:gametype){TicTacToe.new}
-  let(:new_game){Game.new(gametype)}
+  let(:io){Console.new}
+  let(:ui){Ui.new(io)}
+  let(:new_game){Game.new(gametype, ui)}
 
   describe '#initialize' do
     it 'with a new instance of TicTacToe' do
