@@ -1,4 +1,6 @@
-require 'tic_tac_toe'
+$: << File.dirname(__FILE__)
+
+require 'tictactoe'
 
 class Game
 
