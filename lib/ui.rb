@@ -19,12 +19,16 @@ class Ui
     io.show_board(board)
   end
 
-  # def get_user_input
-  #   io.get_user_input
-  # end
+  def get_user_input
+    io.get_user_input
+  end
 
   def display_winner_message(game_being_played)
     io.display_winner_message(game_being_played)
+  end
+
+  def display_invalid_input
+    io.display_invalid_input
   end
 
 end
