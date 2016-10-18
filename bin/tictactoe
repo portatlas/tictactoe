@@ -8,5 +8,5 @@ require_relative '../lib/ui.rb'
 ttt = TicTacToe.new
 io = Console.new
 ui = Ui.new(io)
-new_game = Game.new(ttt, ui)
+new_game = Game.new({gametype: ttt, ui: ui})
 new_game.play
