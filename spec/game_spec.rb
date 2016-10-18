@@ -10,11 +10,44 @@ describe Game do
   let(:ui){Ui.new(io)}
   let(:new_game){Game.new({gametype: gametype, ui: ui})}
 
-  describe '#initialize' do
+  describe ' #initialize' do
     it 'with a new instance of TicTacToe' do
       expect(new_game.gametype).to eq(gametype)
     end
+
+    it 'with a new instance of Ui' do
+      expect(new_game.ui).to eq(ui)
+    end
   end
+
+  # describe '#comp_move' do
+  #   it 'allows the computer to make a move if their is an empty slot' do
+  #     allow(new_game).to receive(:gets).and_return("0")
+  #     expect(new_game.comp_move.board).to eq(["X", " ", " ",
+  #                                             " ", "O", " ",
+  #                                             " ", " ", " "])
+  #   end
+  # end
+
+  # describe '#alternate_move' do
+  #   it 'plays the first turn of the game' do
+  #     new_game.alternate_move
+  #     board_after_first_move = new_game.gametype.board
+
+  #     expect(board_after_first_move).to match_array(["X", " ", " ",
+  #                                                    " ", "O", " ",
+  #                                                    " ", " ", " "])
+  #   end
+  # end
+
+  # describe '#play' do
+  #   it 'stops playing when there is a winner or a draw' do
+  #     allow(new_game).to receive(:gets).and_return("0")
+  #     expect(new_game).to receive(:gets).at_least(:once).and_return("0")
+
+  #     new_game.play
+  #   end
+  # end
 
   # describe '#prompt_user_for_input' do
   #   it 'ask users to input the position on all available slots where they want to place an X' do
@@ -52,34 +85,7 @@ describe Game do
   #   end
   # end
 
-  # describe '#comp_move' do
-  #   it 'allows the computer to make a move if their is an empty slot' do
-  #     allow(new_game).to receive(:gets).and_return("0")
-  #     expect(new_game.comp_move.board).to eq(["X", " ", " ",
-  #                                             " ", "O", " ",
-  #                                             " ", " ", " "])
-  #   end
-  # end
 
-  # describe '#alternate_move' do
-  #   it 'plays the first turn of the game' do
-  #     new_game.alternate_move
-  #     board_after_first_move = new_game.gametype.board
-
-  #     expect(board_after_first_move).to match_array(["X", " ", " ",
-  #                                                    " ", "O", " ",
-  #                                                    " ", " ", " "])
-  #   end
-  # end
-
-  # describe '#play' do
-  #   it 'stops playing when there is a winner or a draw' do
-  #     allow(new_game).to receive(:gets).and_return("0")
-  #     expect(new_game).to receive(:gets).at_least(:once).and_return("0")
-
-  #     new_game.play
-  #   end
-  # end
 
 end
 
