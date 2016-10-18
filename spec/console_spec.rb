@@ -15,11 +15,11 @@ describe Console do
   #   end
   # end
 
-  describe '#winner' do
-    it 'returns You won! if the user won the game' do
-      new_game.gametype.won?("X")
-      expect(io.display_winner_message(gametype)).to eq ("You won!")
-    end
+  # describe '#winner' do
+  #   it 'returns You won! if the user won the game' do
+  #     new_game.gametype.won?("X")
+  #     expect(io.display_winner_message(gametype)).to eq ("You won!")
+  #   end
 
     # it 'returns Computer Won if the computer won the game' do
     #   io.gametype.board = ["O", "O", "X",
@@ -34,7 +34,7 @@ describe Console do
     #                              "O", "X", "O"]
     #   expect(io.winner).to eq "It's a draw!"
     # end
-  end
+  # end
 
 
 end
