@@ -31,6 +31,7 @@ Iteration 2)
 ##Things I Learned from this assignment
 1. I learned about the concept of minimax algorithm and how to apply it to a game like tic tac toe
 2. I learned about the send method and how to use it to dynamically pass in different parameters based on a given situation
+3. TDD saves time and heartache
 
 ##What I can do to improve the application
 1. Have the computer start first at the most optimal spot, this will increase the likely hood of the computer winning
