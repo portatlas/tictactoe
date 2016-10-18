@@ -32,9 +32,9 @@ class Game
     end
   end
 
-  def user_move(input)
-    if gametype.valid_move?(input)
-      @gametype = gametype.move(input)
+  def user_move(index_position)
+    if gametype.valid_move?(index_position)
+      @gametype = gametype.move(index_position)
     else
       "Invalid input try again"
     end
@@ -46,8 +46,8 @@ class Game
     end
   end
 
-  def alternate_move(input)
-    user_move(input)
+  def alternate_move(user_input)
+    user_move(user_input)
     comp_move
     gametype.show_board
     winner
