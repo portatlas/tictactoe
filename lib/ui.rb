@@ -1,4 +1,4 @@
-require_relative 'console'
+require 'console'
 
 class Ui
   attr_reader :io
