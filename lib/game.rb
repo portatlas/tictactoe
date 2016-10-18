@@ -1,5 +1,4 @@
 require_relative 'tic_tac_toe'
-# decisions vs dependency
 
 class Game
 
