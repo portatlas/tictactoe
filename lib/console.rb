@@ -16,9 +16,13 @@ class Console
     puts "Enter a number #{game_being_played.valid_slots.join(", ")} to place an X"
   end
 
-  # def get_user_input
-  #   gets.chomp.to_i
-  # end
+  def get_user_input
+    gets.chomp.to_i
+  end
+
+  def display_invalid_input
+    puts "Invalid input try again"
+  end
 
   def display_winner_message(game_being_played)
     if game_being_played.won?("X")
