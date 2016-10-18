@@ -1,6 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-
-require 'console'
+$: << File.dirname(__FILE__)
 
 class Ui
   attr_reader :io

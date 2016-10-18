@@ -40,16 +40,16 @@ describe Game do
     end
   end
 
-  describe '#alternate_move' do
-    it 'plays the first turn of the game' do
-      new_game.alternate_move
-      board_after_first_move = new_game.gametype.board
+  # describe '#alternate_move' do
+  #   it 'plays the first turn of the game' do
+  #     new_game.alternate_move
+  #     board_after_first_move = new_game.gametype.board
 
-      expect(board_after_first_move).to match_array(["X", " ", " ",
-                                                     " ", "O", " ",
-                                                     " ", " ", " "])
-    end
-  end
+  #     expect(board_after_first_move).to match_array(["X", " ", " ",
+  #                                                    " ", "O", " ",
+  #                                                    " ", " ", " "])
+  #   end
+  # end
 
   describe '#play' do
     it 'continues to play as long as the game is not over' do
