@@ -2,7 +2,11 @@
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
 require_relative '../lib/game.rb'
+require_relative '../lib/console.rb'
+require_relative '../lib/ui.rb'
 
 ttt = TicTacToe.new
-new_game = Game.new(ttt)
+io = Console.new
+ui = Ui.new(io)
+new_game = Game.new(ttt, ui)
 new_game.play
