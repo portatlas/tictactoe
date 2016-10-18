@@ -1,7 +1,5 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'tictactoe'
-
 class Game
 
   attr_accessor :gametype, :ui
