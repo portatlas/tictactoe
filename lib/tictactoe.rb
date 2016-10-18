@@ -1,8 +1,9 @@
-require 'pry'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
 class TicTacToe
 
   attr_accessor :board, :turn
+  attr_reader :desc
 
   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],
                 [0,3,6],[1,4,7],[2,5,8],
@@ -11,14 +12,9 @@ class TicTacToe
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
     @turn = turn
-  end
-
-  def show_board
-    puts " #{@board[0]} " + "|" + " #{@board[1]} " + "|" + " #{@board[2]} "
-    puts "- - - - - -"
-    puts " #{@board[3]} " + "|" + " #{@board[4]} " + "|" + " #{@board[5]} "
-    puts "- - - - - -"
-    puts " #{@board[6]} " + "|" + " #{@board[7]} " + "|" + " #{@board[8]} "
+    @desc = {
+             name: "TacTacToe",
+     instructions: "You and the computer will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
   def move(input)
@@ -50,16 +46,7 @@ class TicTacToe
   end
 
   def game_over?
-    valid_slots == []
-  end
-
-  def winner
-    if game_over? && won?(turn)
-      winning_board = won?(turn)
-      @board[winning_board[0]] == "X" ? "X" : "O"
-    elsif draw?
-      nil
-    end
+    valid_slots == [] || won?("X") || won?("O") ? true : false
   end
 
   def minimax(increment = 10)

@@ -9,7 +9,7 @@
 ##How to run
 1. clone the repo to your local machine
 2. navigate to the directory and run ```bundle install```
-3. run ```ruby bin/tictactoe``` on the command line to start playing
+3. run ```ruby bin/play_ttt``` on the command line to start playing
 
 ##Process
 1. I started researching about algorithms that would allow me to use play tic tac toe with a computer, this is when I came across the [minimax algorithms](http://neverstopbuilding.com/minimax)

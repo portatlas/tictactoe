@@ -1,41 +1,38 @@
-require_relative 'tic_tac_toe'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
 class Game
 
-  def initialize
-    @ttt = TicTacToe.new
+  attr_accessor :gametype, :ui
+
+  def initialize(args)
+    @ui = args.fetch(:ui, nil)
+    @gametype = args.fetch(:gametype, nil)
   end
 
-  def get_user_input
-    puts "Enter a number #{@ttt.valid_slots.join(", ")} to place an X"
-    user_input = gets.chomp.to_i
+  def comp_move
+    if !gametype.valid_slots.empty?
+      @gametype = gametype.move(gametype.optimal_move)
+    end
+  end
+
+  def alternate_move
+    index_position = ui.get_user_input
+    if @gametype.valid_slots.include?(index_position)
+      @gametype = gametype.move(index_position)
+      comp_move
+      ui.show_board(gametype.board)
+      ui.display_winner_message(gametype)
+    else
+      ui.display_invalid_input
+    end
   end
 
   def play
-    puts "Welcome to Tic Tac toe"
-    @ttt.show_board
-    while !@ttt.game_over?
-      input = get_user_input
-      if @ttt.valid_slots.include?(input)
-        @ttt = @ttt.move(input)
-        if ! @ttt.valid_slots.empty? then
-          index = @ttt.optimal_move
-          @ttt = @ttt.move(index)
-          @ttt.show_board
-        end
-        if @ttt.won?("X")
-          puts ("You won!")
-          break
-        elsif @ttt.won?("O")
-          puts ("Computer won!")
-          break
-        elsif @ttt.draw?
-          puts ("It's a draw!")
-          break
-        end
-      else
-        puts "Invalid input try again"
-      end
+    ui.display_intro_msg(gametype)
+    ui.show_board(gametype.board)
+    while !gametype.game_over?
+      ui.prompt_user_for_input(gametype)
+      alternate_move
     end
   end
 
