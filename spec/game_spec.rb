@@ -35,27 +35,36 @@ describe Game do
       played_ttt.board = ["X", "O", "X",
                           "O", "X", "O",
                           "O", "X", "O"]
-      first_move_game = Game.new({gametype: played_ttt, ui: ui})
-      comp_move = first_move_game.comp_move
-      expect(comp_move).to eq nil
+      completed_game = Game.new({gametype: played_ttt, ui: ui})
+      expect(completed_game.comp_move).to eq nil
     end
   end
 
-  # describe '#alternate_move' do
-  #   it 'plays the first turn of the game' do
-  #     new_game.alternate_move
-  #     board_after_first_move = new_game.gametype.board
+  describe '#alternate_move' do
+    it 'plays the first turn of the game' do
+      new_game.alternate_move
+      board_after_first_move = new_game.gametype.board
 
-  #     expect(board_after_first_move).to match_array(["X", " ", " ",
-  #                                                    " ", "O", " ",
-  #                                                    " ", " ", " "])
-  #   end
-  # end
+      expect(board_after_first_move).to match_array(["X", " ", " ",
+                                                     " ", "O", " ",
+                                                     " ", " ", " "])
+    end
+  end
 
   describe '#play' do
-    it 'user can enter their moves' do
-      allow(new_game).to receive(:gets).and_return("0", "1", "2")
+    it 'continues to play as long as the game is not over' do
+      expect(new_game).to receive(:play)
+      new_game.play
     end
+
+    it 'stops playing when the game is not over' do
+      played_ttt = TicTacToe.new
+      played_ttt.board = ["X", "O", "X",
+                          "O", "X", "O",
+                          "O", "X", "O"]
+        completed_game = Game.new({gametype: played_ttt, ui: ui})
+        expect(completed_game).not_to receive(:play)
+      end
   end
 
 end
