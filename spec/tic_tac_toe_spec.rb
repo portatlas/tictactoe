@@ -1,4 +1,4 @@
-require 'tic_tac_toe'
+require 'tictactoe'
 
 describe TicTacToe do
   let(:ttt){TicTacToe.new}

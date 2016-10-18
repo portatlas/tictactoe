@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require '../lib/tic_tac_toe.rb'
+require_relative '../lib/tic_tac_toe.rb'
 require_relative '../lib/game.rb'
 require_relative '../lib/console.rb'
 require_relative '../lib/ui.rb'
