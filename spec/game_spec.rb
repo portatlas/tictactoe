@@ -18,6 +18,13 @@ describe Game do
     end
   end
 
+  describe '#get_user_input' do
+    it 'takes in a user input and returns an integer' do
+      allow(new_game).to receive(:gets).and_return("2")
+      expect(new_game.get_user_input).to eq(2)
+    end
+  end
+
   describe '#winner' do
     it 'returns You won! if the user won the game' do
       new_game.gametype.board = ["X", "X", "X",
@@ -41,12 +48,6 @@ describe Game do
     end
   end
 
-  describe '#get_user_input' do
-    it 'takes in a user input and returns an integer' do
-      allow(new_game).to receive(:gets).and_return("2")
-      expect(new_game.get_user_input).to eq(2)
-    end
-  end
 
 end
 
