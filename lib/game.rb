@@ -33,17 +33,15 @@ class Game
   end
 
   def alternate_move(input)
-    if @gametype.valid_slots.include?(input)
-        @gametype = @gametype.move(input)
+    if gametype.valid_slots.include?(input)
+        @gametype = gametype.move(input)
 
-        if ! @gametype.valid_slots.empty?
-          index = @gametype.optimal_move
-          @gametype = @gametype.move(index)
-          @gametype.show_board
+        if ! gametype.valid_slots.empty?
+          @gametype = gametype.move(gametype.optimal_move)
+          gametype.show_board
         end
 
         puts winner
-
 
     else
       puts "Invalid input try again"
