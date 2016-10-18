@@ -1,5 +1,5 @@
 require 'game'
-require 'tic_tac_toe'
+require 'tictactoe'
 require 'console'
 require 'ui'
 
