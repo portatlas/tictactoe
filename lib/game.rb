@@ -9,12 +9,17 @@ class Game
     @gametype = args.fetch(:gametype, nil)
   end
 
-  def user_move(index_position)
+  def user_move
+    index_position = get_user_input
     if gametype.valid_move?(index_position)
       @gametype = gametype.move(index_position)
     else
-      "Invalid input try again"
+      puts "Invalid input try again"
     end
+  end
+
+  def get_user_input
+    gets.chomp.to_i
   end
 
   def comp_move
@@ -23,8 +28,8 @@ class Game
     end
   end
 
-  def alternate_move(user_input)
-    user_move(user_input)
+  def alternate_move
+    user_move
     comp_move
     ui.show_board(gametype.board)
     ui.display_winner_message(gametype)
@@ -35,7 +40,7 @@ class Game
     ui.show_board(gametype.board)
     while !gametype.game_over?
       ui.prompt_user_for_input(gametype)
-      alternate_move(ui.get_user_input)
+      alternate_move
     end
   end
 
