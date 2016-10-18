@@ -1,4 +1,4 @@
-require_relative 'tic_tac_toe'
+require 'tic_tac_toe'
 
 class Game
 
