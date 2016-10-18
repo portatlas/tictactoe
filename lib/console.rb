@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+$: << File.dirname(__FILE__)
 
 class Console
 
@@ -11,7 +11,8 @@ class Console
   end
 
   def display_intro_msg(game_being_played)
-    puts "Welcome to #{game_being_played.desc[:name]} \n#{game_being_played.desc[:instructions]}"
+    puts "Welcome to #{game_being_played.desc[:name]}"
+    puts "#{game_being_played.desc[:instructions]}"
   end
 
   def prompt_user_for_input(game_being_played)
