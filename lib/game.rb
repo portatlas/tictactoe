@@ -22,6 +22,16 @@ class Game
     user_input = gets.chomp.to_i
   end
 
+  def winner
+    if gametype.won?("X")
+      "You won!"
+    elsif gametype.won?("O")
+      "Computer won!"
+    elsif gametype.draw?
+      "It's a draw!"
+    end
+  end
+
   def alternate_move(input)
     if @gametype.valid_slots.include?(input)
         @gametype = @gametype.move(input)
@@ -32,13 +42,8 @@ class Game
           @gametype.show_board
         end
 
-        if @gametype.won?("X")
-          puts ("You won!")
-        elsif @gametype.won?("O")
-          puts ("Computer won!")
-        elsif @gametype.draw?
-          puts ("It's a draw!")
-        end
+        puts winner
+
 
     else
       puts "Invalid input try again"
