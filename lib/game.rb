@@ -11,7 +11,7 @@ class Game
 
   def display_intro_msg
     puts "Welcome to #{gametype.desc[:name]} \n#{gametype.desc[:instructions]}"
-    puts gametype.show_board
+    gametype.show_board
   end
 
   def prompt_user_for_input
@@ -32,21 +32,25 @@ class Game
     end
   end
 
-  def alternate_move(input)
-    if gametype.valid_slots.include?(input)
-        @gametype = gametype.move(input)
-
-        if ! gametype.valid_slots.empty?
-          @gametype = gametype.move(gametype.optimal_move)
-          gametype.show_board
-        end
-
-        puts winner
-
+  def user_move(input)
+    if gametype.valid_move?(input)
+      @gametype = gametype.move(input)
     else
-      puts "Invalid input try again"
+      "Invalid input try again"
     end
+  end
 
+  def comp_move
+    if !gametype.valid_slots.empty?
+      @gametype = gametype.move(gametype.optimal_move)
+    end
+  end
+
+  def alternate_move(input)
+    user_move(input)
+    comp_move
+    gametype.show_board
+    winner
   end
 
   def play
