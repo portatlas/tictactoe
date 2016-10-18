@@ -3,6 +3,7 @@ require 'pry'
 class TicTacToe
 
   attr_accessor :board, :turn
+  attr_reader :desc
 
   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],
                 [0,3,6],[1,4,7],[2,5,8],
@@ -11,6 +12,9 @@ class TicTacToe
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
     @turn = turn
+    @desc = {
+             name: "TacTacToe",
+     instructions: "You and the computer will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
   def show_board
@@ -50,16 +54,7 @@ class TicTacToe
   end
 
   def game_over?
-    valid_slots == []
-  end
-
-  def winner
-    if game_over? && won?(turn)
-      winning_board = won?(turn)
-      @board[winning_board[0]] == "X" ? "X" : "O"
-    elsif draw?
-      nil
-    end
+    valid_slots == [] || won?("X") || won?("O") ? true : false
   end
 
   def minimax(increment = 10)

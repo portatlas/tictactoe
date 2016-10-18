@@ -2,40 +2,61 @@ require_relative 'tic_tac_toe'
 
 class Game
 
-  def initialize
-    @ttt = TicTacToe.new
+  attr_accessor :gametype
+
+  def initialize(gametype = nil)
+    @gametype = gametype
+  end
+
+  def display_intro_msg
+    puts "Welcome to #{gametype.desc[:name]} \n#{gametype.desc[:instructions]}"
+    gametype.show_board
+  end
+
+  def prompt_user_for_input
+    "Enter a number #{@gametype.valid_slots.join(", ")} to place an X"
   end
 
   def get_user_input
-    puts "Enter a number #{@ttt.valid_slots.join(", ")} to place an X"
     user_input = gets.chomp.to_i
   end
 
+  def winner
+    if gametype.won?("X")
+      "You won!"
+    elsif gametype.won?("O")
+      "Computer won!"
+    elsif gametype.draw?
+      "It's a draw!"
+    end
+  end
+
+  def user_move(index_position)
+    if gametype.valid_move?(index_position)
+      @gametype = gametype.move(index_position)
+    else
+      "Invalid input try again"
+    end
+  end
+
+  def comp_move
+    if !gametype.valid_slots.empty?
+      @gametype = gametype.move(gametype.optimal_move)
+    end
+  end
+
+  def alternate_move(user_input)
+    user_move(user_input)
+    comp_move
+    gametype.show_board
+    winner
+  end
+
   def play
-    puts "Welcome to Tic Tac toe"
-    @ttt.show_board
-    while !@ttt.game_over?
-      input = get_user_input
-      if @ttt.valid_slots.include?(input)
-        @ttt = @ttt.move(input)
-        if ! @ttt.valid_slots.empty? then
-          index = @ttt.optimal_move
-          @ttt = @ttt.move(index)
-          @ttt.show_board
-        end
-        if @ttt.won?("X")
-          puts ("You won!")
-          break
-        elsif @ttt.won?("O")
-          puts ("Computer won!")
-          break
-        elsif @ttt.draw?
-          puts ("It's a draw!")
-          break
-        end
-      else
-        puts "Invalid input try again"
-      end
+    display_intro_msg
+    while !gametype.game_over?
+      puts prompt_user_for_input
+      puts alternate_move(get_user_input)
     end
   end
 

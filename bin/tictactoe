@@ -3,5 +3,6 @@ require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
 require_relative '../lib/game.rb'
 
-new_game = Game.new
+ttt = TicTacToe.new
+new_game = Game.new(ttt)
 new_game.play

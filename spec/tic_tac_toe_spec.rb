@@ -181,50 +181,34 @@ describe TicTacToe do
     end
 
     it 'returns false if the board has open slots' do
-        ttt.board = ["X", "O", "X", "X", "O", " ", "O", "X", "O"]
+        ttt.board = ["X", "O", "X",
+                      "X", "O", " ",
+                      "O", "X", "O"]
         expect(ttt.draw?).to eq false
     end
   end
 
   describe ' #game_over?' do
     it 'returns true if someone won' do
-      ttt.board = ["X", "O", "X", "O", "X", "X", "O", "X", "X"]
+      ttt.board = ["X", "O", "X",
+                   "O", "X", "X",
+                   "O", "X", "X"]
       expect(ttt.game_over?).to eq true
     end
 
     it 'returns true if there is a tie' do
-      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
+      ttt.board = ["X", "O", "X",
+                   "X", "O", "O",
+                   "O", "X", "O"]
       expect(ttt.game_over?).to eq true
     end
 
     it 'returns false if there is an open slot' do
-      ttt.board = ["X", "O", "X", "O", "X", " ", "O", "X", "X"]
+      ttt.board = ["X", "O", "X",
+                   "O", " ", " ",
+                   "O", "X", "X"]
       expect(ttt.game_over?).to eq false
     end
   end
-
-  describe '#winner' do
-    it 'returns X if it is X turn and placed a winning_combo' do
-      ttt.board = ["X", "X", "X",
-                   "O", "X", "X",
-                   "O", "X", "O"]
-      expect(ttt.winner).to eq ("X")
-    end
-
-    it 'returns O if it is O turn and placed a winning_combo' do
-      ttt.board = ["O", "O", "X",
-                   "X", "O", "X",
-                   "X", "O", "O"]
-      ttt.turn = "O"
-      expect(ttt.winner).to eq "O"
-    end
-
-      it 'returns nil if there is no winner' do
-      ttt.board = ["X", "O", "X", "X", "O", "O", "O", "X", "O"]
-      expect(ttt.winner).to eq nil
-    end
-
-  end
-
 
 end
