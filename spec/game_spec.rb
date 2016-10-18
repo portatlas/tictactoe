@@ -28,63 +28,22 @@ describe Game do
   #   end
   # end
 
-  # describe '#alternate_move' do
-  #   it 'plays the first turn of the game' do
-  #     new_game.alternate_move
-  #     board_after_first_move = new_game.gametype.board
+  describe '#alternate_move' do
+    it 'plays the first turn of the game' do
+      new_game.alternate_move
+      board_after_first_move = new_game.gametype.board
 
-  #     expect(board_after_first_move).to match_array(["X", " ", " ",
-  #                                                    " ", "O", " ",
-  #                                                    " ", " ", " "])
-  #   end
-  # end
+      expect(board_after_first_move).to match_array(["X", " ", " ",
+                                                     " ", "O", " ",
+                                                     " ", " ", " "])
+    end
+  end
 
-  # describe '#play' do
-  #   it 'stops playing when there is a winner or a draw' do
-  #     allow(new_game).to receive(:gets).and_return("0")
-  #     expect(new_game).to receive(:gets).at_least(:once).and_return("0")
-
-  #     new_game.play
-  #   end
-  # end
-
-  # describe '#prompt_user_for_input' do
-  #   it 'ask users to input the position on all available slots where they want to place an X' do
-  #     expect(new_game.prompt_user_for_input).to eq("Enter a number 0, 1, 2, 3, 4, 5, 6, 7, 8 to place an X")
-  #   end
-  # end
-
-  # describe '#get_user_input' do
-  #   it 'takes in a user input and returns an integer' do
-  #     allow(new_game).to receive(:gets).and_return("2")
-  #     expect(new_game.get_user_input).to eq(2)
-  #   end
-  # end
-
-  # describe '#winner' do
-  #   it 'returns You won! if the user won the game' do
-  #     new_game.gametype.board = ["X", "X", "X",
-  #                                "O", "X", "X",
-  #                                "O", "X", "O"]
-  #     expect(new_game.winner).to eq ("You won!")
-  #   end
-
-  #   it 'returns Computer Won if the computer won the game' do
-  #     new_game.gametype.board = ["O", "O", "X",
-  #                                "X", "O", "X",
-  #                                "X", "O", "O"]
-  #     expect(new_game.winner).to eq "Computer won!"
-  #   end
-
-  #   it 'returns It\'s a draw! if there is no winner' do
-  #     new_game.gametype.board = ["X", "O", "X",
-  #                                "X", "O", "O",
-  #                                "O", "X", "O"]
-  #     expect(new_game.winner).to eq "It's a draw!"
-  #   end
-  # end
-
-
+  describe '#play' do
+    it 'user can enter their moves' do
+      allow(new_game).to receive(:gets).and_return("0", "1", "2")
+    end
+  end
 
 end
 
