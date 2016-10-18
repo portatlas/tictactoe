@@ -12,8 +12,22 @@ class Console
     puts "Welcome to #{game_being_played.desc[:name]} \n#{game_being_played.desc[:instructions]}"
   end
 
+  def prompt_user_for_input(game_being_played)
+    puts "Enter a number #{game_being_played.valid_slots.join(", ")} to place an X"
+  end
+
   def get_user_input
     gets.chomp.to_i
+  end
+
+  def display_winner_message(game_being_played)
+    if game_being_played.won?("X")
+      puts "You won!"
+    elsif game_being_played.won?("O")
+      puts "Computer won!"
+    elsif game_being_played.draw?
+      puts "It's a draw!"
+    end
   end
 
 end
