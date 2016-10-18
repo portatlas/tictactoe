@@ -25,11 +25,14 @@ describe Console do
     end
   end
 
-  # describe '#prompt_user_for_input' do
-  #   it 'ask users to input the position on all available slots where they want to place an X' do
-  #     expect(io.prompt_user_for_input(gametype)).to eq("Enter a number 0, 1, 2, 3, 4, 5, 6, 7, 8 to place an X")
-  #   end
-  # end
+  describe '#display_intro_msg' do
+    it 'ask users to input the position on all available slots where they want to place an X' do
+      output = capture_puts{ io.display_intro_msg(gametype)}
+
+      expect(output).to include("Welcome to #{gametype.desc[:name]}")
+      expect(output).to include(gametype.desc[:instructions])
+    end
+  end
 
   # describe '#winner' do
   #   it 'returns You won! if the user won the game' do
