@@ -1,8 +1,7 @@
-require 'stringio'
-require './lib/game.rb'
-require './lib/tic_tac_toe.rb'
-require './lib/console.rb'
-require './lib/ui.rb'
+require 'game'
+require 'tic_tac_toe'
+require 'console'
+require 'ui'
 
 describe Game do
   let(:gametype){TicTacToe.new}
