@@ -50,8 +50,7 @@ class TicTacToe
   end
 
   def draw?
-    valid_slots == []
-    # && won?(turn) == nil
+    valid_slots == [] && won?(turn) == nil
   end
 
   def game_over?
