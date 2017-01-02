@@ -8,8 +8,8 @@ class CompPlayer
     board.valid_slots.map{ |index| minimax(board.move(index), rules, increment + 10) }.send(board.whose_turn(:max, :min)) + board.whose_turn(-increment, increment)
   end
 
-  def optimal_move
-    valid_slots.send(whose_turn(:max_by, :min_by)){|index| move(index).minimax}
+  def optimal_move(board, rules)
+    board.valid_slots.send(board.whose_turn(:max_by, :min_by)){|index| minimax(board.move(index), rules)}
   end
 
 end
