@@ -45,27 +45,6 @@ describe TicTacToe do
     end
   end
 
-  describe '#valid_move?' do
-    it 'returns true if the move is made on an empty board' do
-      expect(ttt.valid_move?(1)).to eq true
-    end
-
-    it 'returns true if the move is made on a valid slot' do
-      played_board = ["X", "O", "X", "O", "X", "X", " ", "X", "O"]
-      ttt.board = played_board
-      expect(ttt.valid_move?(6)).to eq true
-    end
-
-    it 'returns false if the move is out of range' do
-      expect(ttt.valid_move?(100)).to eq false
-    end
-
-    it 'returns false if the move is made on a slot that is taken' do
-      ttt = TicTacToe.new.move(1)
-      expect(ttt.valid_move?(1)).to eq false
-    end
-  end
-
   describe '#whose_turn' do
     it 'returns X when it is Xs turn' do
       ttt = TicTacToe.new.move(0).move(1).move(8)

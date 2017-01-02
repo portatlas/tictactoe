@@ -27,10 +27,6 @@ class TicTacToe
     @board.each_with_index.map{|symbol, index| index if symbol==" "}.reject{|slots| slots == nil }
   end
 
-  def valid_move?(input)
-    valid_slots.include?(input)
-  end
-
   def whose_turn(x, o)
     turn == "X" ? x : o
   end
