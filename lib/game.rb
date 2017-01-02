@@ -2,11 +2,12 @@ $: << File.dirname(__FILE__)
 
 class Game
 
-  attr_reader :gametype, :ui
+  attr_reader :gametype, :ui, :rules
 
   def initialize(args)
     @ui = args.fetch(:ui, nil)
     @gametype = args.fetch(:gametype, nil)
+    @rules = args.fetch(:rules, nil)
   end
 
   def comp_move
@@ -30,7 +31,7 @@ class Game
   def play
     ui.display_intro_msg(gametype)
     ui.show_board(gametype.board)
-    while !gametype.game_over?
+    while !rules.game_over?(gametype)
       ui.prompt_user_for_input(gametype)
       alternate_move
     end
