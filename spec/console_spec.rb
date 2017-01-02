@@ -2,12 +2,14 @@ require 'game'
 require 'console'
 require 'ui'
 require 'tictactoe'
+require 'tictactoe_rules'
 
 describe Console do
   let(:gametype){TicTacToe.new}
   let(:io){Console.new}
   let(:ui){Ui.new(io)}
-  let(:new_game){Game.new({gametype: gametype, ui: ui})}
+  let(:rules){TictactoeRules.new}
+  let(:new_game){Game.new({gametype: gametype, ui: ui, rules: rules})}
 
   describe '#show_board' do
     it 'puts to the screen a tic tac toe board' do
@@ -65,7 +67,7 @@ describe Console do
                    "X", "O", "O"]
       winning_game = TicTacToe.new
       winning_game.board = win_board
-      output = capture_puts{ io.display_winner_message(winning_game)}
+      output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("X won!")
     end
 
@@ -75,7 +77,7 @@ describe Console do
                         "O", "O", "O"]
       winning_game = TicTacToe.new
       winning_game.board = comp_win_board
-      output = capture_puts{ io.display_winner_message(winning_game)}
+      output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("O won!")
     end
 
@@ -85,7 +87,7 @@ describe Console do
                     "X", "O", "O"]
       winning_game = TicTacToe.new
       winning_game.board = draw_board
-      output = capture_puts{ io.display_winner_message(winning_game)}
+      output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("It's a draw!")
     end
   end
