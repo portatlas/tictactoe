@@ -42,17 +42,17 @@ class TicTacToe
   #   valid_slots == [] || won?("X") || won?("O") ? true : false
   # end
 
-  def minimax(increment = 10)
-    return 1000 if won?("X")
-    return -1000 if won?("O")
-    return 0 if draw?
+  # def minimax(increment = 10)
+  #   return 1000 if won?("X")
+  #   return -1000 if won?("O")
+  #   return 0 if draw?
 
-    valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(-increment, increment)
-  end
+  #   valid_slots.map{ |index| move(index).minimax(increment + 10) }.send(whose_turn(:max, :min)) + whose_turn(-increment, increment)
+  # end
 
-  def optimal_move
-    valid_slots.send(whose_turn(:max_by, :min_by)){|index| move(index).minimax}
-  end
+  # def optimal_move
+  #   valid_slots.send(whose_turn(:max_by, :min_by)){|index| move(index).minimax}
+  # end
 
 end
 
