@@ -3,10 +3,12 @@
 require './lib/console'
 require 'ui'
 require 'tictactoe'
+require 'tictactoe_rules'
 require 'game'
 
 io = Console.new
 ui = Ui.new(io)
 ttt = TicTacToe.new
-new_game = Game.new({gametype: ttt, ui: ui})
+rules = TictactoeRules.new
+new_game = Game.new({gametype: ttt, ui: ui, rules: rules})
 new_game.play
