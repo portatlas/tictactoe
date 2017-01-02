@@ -1,8 +1,8 @@
-require 'tictactoe'
+require 'tictactoe_board'
 require 'tictactoe_rules'
 
 describe TictactoeRules do
-  let(:ttt){TicTacToe.new}
+  let(:ttt){TictactoeBoard.new}
   let(:ttt_rules){TictactoeRules.new}
 
   describe 'WIN_COMBOS' do
