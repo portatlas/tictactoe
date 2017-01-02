@@ -29,9 +29,9 @@ class Console
 
   def display_winner_message(game_being_played)
     if game_being_played.won?("X")
-      puts "You won!"
+      puts "X won!"
     elsif game_being_played.won?("O")
-      puts "Computer won!"
+      puts "O won!"
     elsif game_being_played.draw?
       puts "It's a draw!"
     end

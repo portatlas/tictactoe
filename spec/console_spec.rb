@@ -66,7 +66,7 @@ describe Console do
       winning_game = TicTacToe.new
       winning_game.board = win_board
       output = capture_puts{ io.display_winner_message(winning_game)}
-      expect(output).to include ("You won!")
+      expect(output).to include ("X won!")
     end
 
     it 'returns Computer won! if the user won the game' do
@@ -76,7 +76,7 @@ describe Console do
       winning_game = TicTacToe.new
       winning_game.board = comp_win_board
       output = capture_puts{ io.display_winner_message(winning_game)}
-      expect(output).to include ("Computer won!")
+      expect(output).to include ("O won!")
     end
 
     it 'returns It is a draw! if no one won the game' do
