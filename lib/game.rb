@@ -13,7 +13,7 @@ class Game
 
   def comp_move
     if !gametype.valid_slots.empty?
-      @gametype = gametype.move(@comp_player.optimal_move(gametype, rules))
+      @gametype = gametype.move(comp_player.optimal_move(gametype, rules))
     end
   end
 
@@ -23,7 +23,7 @@ class Game
       @gametype = gametype.move(index_position)
       comp_move
       ui.show_board(gametype.board)
-      ui.display_winner_message(gametype)
+      ui.display_winner_message(rules, gametype)
     else
       ui.display_invalid_input
     end
