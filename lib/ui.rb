@@ -23,8 +23,8 @@ class Ui
     io.get_user_input
   end
 
-  def display_winner_message(game_being_played)
-    io.display_winner_message(game_being_played)
+  def display_winner_message(rules, game_being_played)
+    io.display_winner_message(rules, game_being_played)
   end
 
   def display_invalid_input
