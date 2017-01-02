@@ -1,9 +1,9 @@
-require 'tictactoe'
+require 'tictactoe_board'
 require 'tictactoe_rules'
 require 'comp_player'
 
 describe CompPlayer do
-  let(:ttt){TicTacToe.new}
+  let(:ttt){TictactoeBoard.new}
   let(:ttt_rules){TictactoeRules.new}
   let(:comp_player){CompPlayer.new}
 
@@ -42,12 +42,12 @@ describe CompPlayer do
 
     context 'one move away from win' do
       it 'returns 990 if X is one move away for a winning combo' do
-        ttt = TicTacToe.new(["X", "X", " ", " ", " ", " ", " ", " ", " "], "X")
+        ttt = TictactoeBoard.new(["X", "X", " ", " ", " ", " ", " ", " ", " "], "X")
         expect(comp_player.minimax(ttt, ttt_rules)).to eq 990
       end
 
       it 'returns -990 if O is one more away for a winning combo' do
-        ttt = TicTacToe.new([" ", " ", " ", " ", " ", " ", " ", "O", "O"], "O")
+        ttt = TictactoeBoard.new([" ", " ", " ", " ", " ", " ", " ", "O", "O"], "O")
         expect(comp_player.minimax(ttt, ttt_rules)).to eq -990
       end
     end
@@ -56,34 +56,34 @@ describe CompPlayer do
   describe '#optimal_move' do
     context 'when X is about to win' do
       it 'returns 2 as the index for the optimal move' do
-          ttt = TicTacToe.new(["X", "X", " ", " ", " ", " ", " ", " ", " "], "X")
+          ttt = TictactoeBoard.new(["X", "X", " ", " ", " ", " ", " ", " ", " "], "X")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 2
       end
 
       it 'returns 4 as the index for the optimal move' do
-          ttt = TicTacToe.new([" ", " ", " ", "X", " ", "X", " ", " ", " "], "X")
+          ttt = TictactoeBoard.new([" ", " ", " ", "X", " ", "X", " ", " ", " "], "X")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 4
       end
 
       it 'returns 8 as the index for the optimal move' do
-          ttt = TicTacToe.new(["X", " ", " ", "O", "X", "X", " ", " ", " "], "X")
+          ttt = TictactoeBoard.new(["X", " ", " ", "O", "X", "X", " ", " ", " "], "X")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 8
       end
     end
 
     context 'when O is about to win' do
       it 'returns 8 as the index for the optimal move' do
-          ttt = TicTacToe.new(["X", "X", " ", " ", " ", " ", "O", "O", " "], "O")
+          ttt = TictactoeBoard.new(["X", "X", " ", " ", " ", " ", "O", "O", " "], "O")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 8
       end
 
       it 'returns 4 as the index for the optimal move' do
-          ttt = TicTacToe.new([" ", "O", " ", "X", "O", "X", " ", " ", " "], "O")
+          ttt = TictactoeBoard.new([" ", "O", " ", "X", "O", "X", " ", " ", " "], "O")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 7
       end
 
       it 'returns 8 as the index for the optimal move' do
-          ttt = TicTacToe.new(["X", " ", "O", "O", "O", "X", " ", " ", " "], "O")
+          ttt = TictactoeBoard.new(["X", " ", "O", "O", "O", "X", " ", " ", " "], "O")
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 6
       end
     end
