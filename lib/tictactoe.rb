@@ -14,7 +14,7 @@ class TicTacToe
     @turn = turn
     @desc = {
              name: "TacTacToe",
-     instructions: "You and the computer will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
+     instructions: "You (X) and the computer (O) will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
   def move(input)
