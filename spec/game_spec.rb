@@ -1,5 +1,7 @@
 require 'game'
 require 'tictactoe'
+require 'tictactoe_rules'
+require 'comp_player'
 require 'console'
 require 'ui'
 
@@ -7,7 +9,9 @@ describe Game do
   let(:gametype){TicTacToe.new}
   let(:io){Console.new}
   let(:ui){Ui.new(io)}
-  let(:new_game){Game.new({gametype: gametype, ui: ui})}
+  let(:rules){TictactoeRules.new}
+  let(:comp_player){CompPlayer.new}
+  let(:new_game){Game.new({gametype: gametype, ui: ui, rules: rules, comp_player: comp_player})}
 
   describe ' #initialize' do
     it 'with a new instance of TicTacToe' do
@@ -25,7 +29,7 @@ describe Game do
       played_ttt.board = ["X", " ", " ",
                           " ", " ", " ",
                           " ", " ", " "]
-      first_move_game = Game.new({gametype: played_ttt, ui: ui})
+      first_move_game = Game.new({gametype: played_ttt, ui: ui, rules: rules, comp_player: comp_player })
       comp_move = first_move_game.comp_move
       expect(comp_move).to be_an_instance_of(TicTacToe)
     end
@@ -35,7 +39,7 @@ describe Game do
       played_ttt.board = ["X", "O", "X",
                           "O", "X", "O",
                           "O", "X", "O"]
-      completed_game = Game.new({gametype: played_ttt, ui: ui})
+      completed_game = Game.new({gametype: played_ttt, ui: ui, rules: rules, comp_player: comp_player})
       expect(completed_game.comp_move).to eq nil
     end
   end
