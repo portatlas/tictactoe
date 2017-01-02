@@ -3,11 +3,8 @@ $: << File.dirname(__FILE__)
 class TicTacToe
 
   attr_accessor :board, :turn
-  attr_reader :desc
+  attr_reader :desc, :valid_slots
 
-  WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],
-                [0,3,6],[1,4,7],[2,5,8],
-                [0,4,8],[2,4,6]]
 
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
@@ -31,19 +28,19 @@ class TicTacToe
     turn == "X" ? x : o
   end
 
-  def won?(turn)
-    WIN_COMBOS.detect do |win_combo|
-      (@board[win_combo[0]]  == turn && @board[win_combo[1]]  == turn && @board[win_combo[2]]  == turn )
-    end
-  end
+  # def won?(turn)
+  #   WIN_COMBOS.detect do |win_combo|
+  #     (@board[win_combo[0]]  == turn && @board[win_combo[1]]  == turn && @board[win_combo[2]]  == turn )
+  #   end
+  # end
 
-  def draw?
-    valid_slots == [] && won?(turn) == nil
-  end
+  # def draw?
+  #   valid_slots == [] && won?(turn) == nil
+  # end
 
-  def game_over?
-    valid_slots == [] || won?("X") || won?("O") ? true : false
-  end
+  # def game_over?
+  #   valid_slots == [] || won?("X") || won?("O") ? true : false
+  # end
 
   def minimax(increment = 10)
     return 1000 if won?("X")
