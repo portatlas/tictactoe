@@ -2,17 +2,18 @@ $: << File.dirname(__FILE__)
 
 class Game
 
-  attr_reader :gametype, :ui, :rules
+  attr_reader :gametype, :ui, :rules, :comp_player
 
   def initialize(args)
     @ui = args.fetch(:ui, nil)
     @gametype = args.fetch(:gametype, nil)
     @rules = args.fetch(:rules, nil)
+    @comp_player = args.fetch(:comp_player, nil)
   end
 
   def comp_move
     if !gametype.valid_slots.empty?
-      @gametype = gametype.move(gametype.optimal_move)
+      @gametype = gametype.move(@comp_player.optimal_move(gametype, rules))
     end
   end
 
