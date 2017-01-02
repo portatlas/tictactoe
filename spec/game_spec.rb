@@ -1,21 +1,21 @@
 require 'game'
-require 'tictactoe'
+require 'tictactoe_board'
 require 'tictactoe_rules'
 require 'comp_player'
 require 'console'
 require 'ui'
 
 describe Game do
-  let(:gametype){TicTacToe.new}
+  let(:ttt_board){TictactoeBoard.new}
   let(:io){Console.new}
   let(:ui){Ui.new(io)}
   let(:rules){TictactoeRules.new}
   let(:comp_player){CompPlayer.new}
-  let(:new_game){Game.new({gametype: gametype, ui: ui, rules: rules, comp_player: comp_player})}
+  let(:new_game){Game.new({gametype: ttt_board, ui: ui, rules: rules, comp_player: comp_player})}
 
   describe ' #initialize' do
     it 'with a new instance of TicTacToe' do
-      expect(new_game.gametype).to eq(gametype)
+      expect(new_game.gametype).to eq(ttt_board)
     end
 
     it 'with a new instance of Ui' do
@@ -25,17 +25,17 @@ describe Game do
 
   describe '#comp_move' do
     it 'returns a TicTacToe board if a move is made' do
-      played_ttt = TicTacToe.new
+      played_ttt = TictactoeBoard.new
       played_ttt.board = ["X", " ", " ",
                           " ", " ", " ",
                           " ", " ", " "]
       first_move_game = Game.new({gametype: played_ttt, ui: ui, rules: rules, comp_player: comp_player })
       comp_move = first_move_game.comp_move
-      expect(comp_move).to be_an_instance_of(TicTacToe)
+      expect(comp_move).to be_an_instance_of(TictactoeBoard)
     end
 
     it 'returns nil if comp move was not made' do
-      played_ttt = TicTacToe.new
+      played_ttt = TictactoeBoard.new
       played_ttt.board = ["X", "O", "X",
                           "O", "X", "O",
                           "O", "X", "O"]
@@ -62,7 +62,7 @@ describe Game do
     end
 
     it 'stops playing when the game is not over' do
-      played_ttt = TicTacToe.new
+      played_ttt = TictactoeBoard.new
       played_ttt.board = ["X", "O", "X",
                           "O", "X", "O",
                           "O", "X", "O"]
