@@ -1,15 +1,15 @@
 require 'game'
 require 'console'
 require 'ui'
-require 'tictactoe'
+require 'tictactoe_board'
 require 'tictactoe_rules'
 
 describe Console do
-  let(:gametype){TicTacToe.new}
+  let(:ttt_board){TictactoeBoard.new}
   let(:io){Console.new}
   let(:ui){Ui.new(io)}
   let(:rules){TictactoeRules.new}
-  let(:new_game){Game.new({gametype: gametype, ui: ui, rules: rules})}
+  let(:new_game){Game.new({gametype: ttt_board, ui: ui, rules: rules})}
 
   describe '#show_board' do
     it 'puts to the screen a tic tac toe board' do
@@ -29,18 +29,18 @@ describe Console do
 
   describe '#display_intro_msg' do
     it 'puts the intro message for the game' do
-      output = capture_puts{ io.display_intro_msg(gametype)}
+      output = capture_puts{ io.display_intro_msg(ttt_board)}
 
-      expect(output).to include("Welcome to #{gametype.desc[:name]}")
-      expect(output).to include(gametype.desc[:instructions])
+      expect(output).to include("Welcome to #{ttt_board.desc[:name]}")
+      expect(output).to include(ttt_board.desc[:instructions])
     end
   end
 
   describe '#prompt_user_for_input' do
     it 'ask users to input the position on all available slots where they want to place an X' do
-      output = capture_puts{ io.prompt_user_for_input(gametype)}
+      output = capture_puts{ io.prompt_user_for_input(ttt_board)}
 
-      expect(output).to include("Enter a number #{gametype.valid_slots.join(", ")} to place an X")
+      expect(output).to include("Enter a number #{ttt_board.valid_slots.join(", ")} to place an X")
     end
   end
 
@@ -65,7 +65,7 @@ describe Console do
       win_board = ["X", "X", "X",
                    "O", "O", "X",
                    "X", "O", "O"]
-      winning_game = TicTacToe.new
+      winning_game = TictactoeBoard.new
       winning_game.board = win_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("X won!")
@@ -75,7 +75,7 @@ describe Console do
       comp_win_board = ["X", "O", " ",
                         "O", "O", "X",
                         "O", "O", "O"]
-      winning_game = TicTacToe.new
+      winning_game = TictactoeBoard.new
       winning_game.board = comp_win_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("O won!")
@@ -85,7 +85,7 @@ describe Console do
       draw_board = ["X", "O", "O",
                     "O", "X", "X",
                     "X", "O", "O"]
-      winning_game = TicTacToe.new
+      winning_game = TictactoeBoard.new
       winning_game.board = draw_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("It's a draw!")
