@@ -2,7 +2,7 @@ $: << File.dirname(__FILE__)
 
 class Game
 
-  attr_accessor :gametype, :ui
+  attr_reader :gametype, :ui
 
   def initialize(args)
     @ui = args.fetch(:ui, nil)
