@@ -29,10 +29,10 @@ describe Console do
 
   describe '#display_intro_msg' do
     it 'puts the intro message for the game' do
-      output = capture_puts{ io.display_intro_msg(ttt_board)}
+      output = capture_puts{ io.display_intro_msg(rules)}
 
-      expect(output).to include("Welcome to #{ttt_board.desc[:name]}")
-      expect(output).to include(ttt_board.desc[:instructions])
+      expect(output).to include("Welcome to #{rules.desc[:name]}")
+      expect(output).to include(rules.desc[:instructions])
     end
   end
 
