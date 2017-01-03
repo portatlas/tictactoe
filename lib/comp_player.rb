@@ -1,3 +1,5 @@
+require 'pry'
+
 class CompPlayer
 
   def minimax(board, rules, increment = 10)
@@ -12,6 +14,8 @@ class CompPlayer
     board.valid_slots.send(board.whose_turn(:max_by, :min_by)){|index| minimax(board.move(index), rules)}
   end
 
-
+  def comp_move(board, rules)
+    board.move(optimal_move(board, rules))
+  end
 
 end
