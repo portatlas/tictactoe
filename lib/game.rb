@@ -11,18 +11,14 @@ class Game
     @comp_player = args.fetch(:comp_player, nil)
   end
 
-  def comp_move
-    if !gametype.valid_slots.empty?
-      @gametype = gametype.move(comp_player.optimal_move(gametype, rules))
-    end
-  end
-
   def alternate_move
     index_position = ui.get_user_input
     if @gametype.valid_slots.include?(index_position)
       @gametype = gametype.move(index_position)
-      comp_move
-      ui.show_board(gametype.board_arr)
+      if !@gametype.valid_slots.empty?
+        @gametype = comp_player.comp_move(gametype, rules)
+      end
+      ui.show_board(@gametype.board_arr)
       ui.display_winner_message(rules, gametype)
     else
       ui.display_invalid_input
