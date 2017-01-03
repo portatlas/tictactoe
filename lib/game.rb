@@ -30,7 +30,7 @@ class Game
   end
 
   def play
-    ui.display_intro_msg(gametype)
+    ui.display_intro_msg(gametype, rules)
     ui.show_board(gametype.board)
     while !rules.game_over?(gametype)
       ui.prompt_user_for_input(gametype)
