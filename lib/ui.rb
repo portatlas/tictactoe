@@ -7,8 +7,8 @@ class Ui
     @io = io
   end
 
-  def display_intro_msg(game_being_played)
-    io.display_intro_msg(game_being_played)
+  def display_intro_msg(rules)
+    io.display_intro_msg(rules)
   end
 
   def prompt_user_for_input(game_being_played)
@@ -23,8 +23,8 @@ class Ui
     io.get_user_input
   end
 
-  def display_winner_message(game_being_played)
-    io.display_winner_message(game_being_played)
+  def display_winner_message(game_being_played, rules)
+    io.display_winner_message(game_being_played, rules)
   end
 
   def display_invalid_input
