@@ -24,7 +24,4 @@ class TictactoeBoard
     turn == "X" ? x : o
   end
 
-
 end
-
-
