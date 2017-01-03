@@ -12,4 +12,6 @@ class CompPlayer
     board.valid_slots.send(board.whose_turn(:max_by, :min_by)){|index| minimax(board.move(index), rules)}
   end
 
+
+
 end

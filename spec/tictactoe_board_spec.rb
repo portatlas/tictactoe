@@ -5,24 +5,24 @@ describe TictactoeBoard do
 
   describe '#initialize' do
     it 'creates a empty board represented by an array of 9 elements' do
-      expect(ttt.board).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " "])
+      expect(ttt.board_arr).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " "])
     end
   end
 
   describe '#move' do
     it 'will play X on slot 1' do
       ttt = TictactoeBoard.new.move(0)
-      expect(ttt.board).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
+      expect(ttt.board_arr).to eq(["X", " ", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on slot 1, and O on slot 2' do
       ttt = TictactoeBoard.new.move(0).move(1)
-      expect(ttt.board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
+      expect(ttt.board_arr).to eq(["X", "O", " ", " ", " ", " ", " ", " ", " "])
     end
 
     it 'will play X on slot 1, and O on slot 2, and X on slot 9' do
       ttt = TictactoeBoard.new.move(0).move(1).move(8)
-      played_board = ttt.board
+      played_board = ttt.board_arr
       expect(played_board).to eq(["X", "O", " ", " ", " ", " ", " ", " ", "X"])
     end
   end
