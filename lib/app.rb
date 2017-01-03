@@ -1,9 +1,9 @@
 require 'pry'
 require 'sinatra/base'
 require_relative 'tictactoe_rules'
-require_relative 'tictactoe_board'
-require_relative 'comp_player'
-require_relative 'game'
+require 'tictactoe_board'
+require 'comp_player'
+require_relative 'console_game_engine'
 
 class TicTacToe < Sinatra::Base
   enable :sessions
@@ -18,7 +18,7 @@ class TicTacToe < Sinatra::Base
     ttt_board = TictactoeBoard.new
     rules = TictactoeRules.new
     comp_player = CompPlayer.new
-    @game = Game.new({gametype: ttt_board, rules: rules, comp_player: comp_player})
+    @game = ConsoleGameEngine.new({gametype: ttt_board, rules: rules, comp_player: comp_player})
     erb :game
   end
 
