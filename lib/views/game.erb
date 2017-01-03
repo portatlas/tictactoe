@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>TicTacToe</title>
+</head>
+<body>
+  <h1>TicTacToe</h1>
+
+  <table>
+    <tr>
+      <td><%= @game.gametype.board_arr[0] %> </td>
+    </tr>
+  </table>
+
+  <form method='post' action='/game/move'>
+    <label for='grid_position'>Position:</label>
+    <input type='text' name='grid_position' id='grid_position' autofocus />
+    <input type='submit' value='Submit' />
+  </form>
+
+</body>
+</html>
