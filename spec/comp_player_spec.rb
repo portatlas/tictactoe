@@ -87,6 +87,26 @@ describe CompPlayer do
           expect(comp_player.optimal_move(ttt, ttt_rules)).to eq 6
       end
     end
-
   end
+
+  describe '#comp_move' do
+    it 'returns a TicTacToe board if a move is made' do
+      played_ttt = TictactoeBoard.new
+      played_ttt.board_arr = ["X", " ", " ",
+                              " ", " ", " ",
+                              " ", " ", " "]
+
+      expect(comp_player.comp_move(played_ttt, ttt_rules)).to be_an_instance_of(TictactoeBoard)
+    end
+
+    # it 'returns nil if comp move was not made' do
+    #   played_ttt = TictactoeBoard.new
+    #   played_ttt.board_arr = ["X", "O", "X",
+    #                           "O", "X", "O",
+    #                           "O", "X", "O"]
+
+    #   expect(comp_player.comp_move(played_ttt, ttt_rules)).to eq nil
+    # end
+  end
+
 end
