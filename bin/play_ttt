@@ -9,8 +9,8 @@ require 'game'
 
 io = Console.new
 ui = Ui.new(io)
-ttt = TictactoeBoard.new
+ttt_board = TictactoeBoard.new
 rules = TictactoeRules.new
 comp_player = CompPlayer.new
-new_game = Game.new({gametype: ttt, ui: ui, rules: rules, comp_player: comp_player})
+new_game = Game.new({gametype: ttt_board, ui: ui, rules: rules, comp_player: comp_player})
 new_game.play
