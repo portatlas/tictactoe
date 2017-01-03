@@ -3,15 +3,11 @@ $: << File.dirname(__FILE__)
 class TictactoeBoard
 
   attr_accessor :board, :turn
-  attr_reader :desc, :valid_slots
-
+  attr_reader :valid_slots
 
   def initialize (board = Array.new(9, " "), turn = "X")
     @board = board
     @turn = turn
-    @desc = {
-             name: "TacTacToe",
-     instructions: "You (X) and the computer (O) will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
   def move(input)
