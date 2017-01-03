@@ -10,30 +10,30 @@ describe CompPlayer do
   describe '#minimax' do
     context 'a player wins' do
       it 'returns 1000 if on Xs are on the winning combo spots' do
-        ttt.board = ["X", "X", "X",
-                     "O", "X", "X",
-                     "O", "X", "O"]
+        ttt.board_arr = ["X", "X", "X",
+                         "O", "X", "X",
+                         "O", "X", "O"]
         expect(comp_player.minimax(ttt, ttt_rules)).to eq 1000
       end
 
       it 'returns -1000 if Os are on the winning combo spot' do
-        ttt.board = ["X", "X", "O",
-                     "O", "X", "X",
-                     "O", "O", "O"]
+        ttt.board_arr = ["X", "X", "O",
+                         "O", "X", "X",
+                         "O", "O", "O"]
         expect(comp_player.minimax(ttt, ttt_rules)).to eq -1000
       end
     end
 
     context 'draw' do
       it 'returns 0 if it is a draw' do
-        ttt.board = ["X", "O", "X",
-                     "X", "O", "O",
-                     "O", "X", "O"]
+        ttt.board_arr = ["X", "O", "X",
+                         "X", "O", "O",
+                         "O", "X", "O"]
         expect(comp_player.minimax(ttt, ttt_rules)).to eq 0
       end
 
       it 'returns 0 if it is a draw' do
-        ttt.board = ["X", "O", "X",
+        ttt.board_arr = ["X", "O", "X",
                      "O", "O", "X",
                      "O", "X", "O"]
         expect(comp_player.minimax(ttt, ttt_rules)).to eq 0
