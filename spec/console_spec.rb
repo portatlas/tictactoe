@@ -1,4 +1,4 @@
-require 'console_game'
+require 'console_game_engine'
 require 'console'
 require 'ui'
 require 'tictactoe_board'

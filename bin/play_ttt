@@ -5,12 +5,12 @@ require 'ui'
 require 'tictactoe_board'
 require 'tictactoe_rules'
 require 'comp_player'
-require 'console_game'
+require 'console_game_engine'
 
 io = Console.new
 ui = Ui.new(io)
 ttt_board = TictactoeBoard.new
 rules = TictactoeRules.new
 comp_player = CompPlayer.new
-new_game = Game.new({gametype: ttt_board, ui: ui, rules: rules, comp_player: comp_player})
+new_game = ConsoleGameEngine.new({gametype: ttt_board, ui: ui, rules: rules, comp_player: comp_player})
 new_game.play

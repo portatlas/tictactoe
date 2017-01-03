@@ -1,6 +1,6 @@
 $: << File.dirname(__FILE__)
 
-class Game
+class ConsoleGameEngine
 
   attr_reader :gametype, :ui, :rules, :comp_player
 
