@@ -12,9 +12,9 @@ class TictactoeRules
      instructions: "You (X) and the computer (O) will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
-  def won?(board, turn)
+  def won?(ttt_board, turn)
     WIN_COMBOS.detect do |win_combo|
-      (board.board[win_combo[0]]  == turn && board.board[win_combo[1]]  == turn && board.board[win_combo[2]]  == turn )
+      (ttt_board.board_arr[win_combo[0]]  == turn && ttt_board.board_arr[win_combo[1]]  == turn && ttt_board.board_arr[win_combo[2]]  == turn )
     end
   end
 
