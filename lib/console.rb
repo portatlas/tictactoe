@@ -10,9 +10,9 @@ class Console
     puts " #{board[6]} " + "|" + " #{board[7]} " + "|" + " #{board[8]} "
   end
 
-  def display_intro_msg(game_being_played)
-    puts "Welcome to #{game_being_played.desc[:name]}"
-    puts "#{game_being_played.desc[:instructions]}"
+  def display_intro_msg(game_being_played, rules)
+    puts "Welcome to #{rules.desc[:name]}"
+    puts "#{rules.desc[:instructions]}"
   end
 
   def prompt_user_for_input(game_being_played)
