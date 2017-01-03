@@ -1,8 +1,8 @@
 require 'pry'
 require 'sinatra/base'
 require_relative 'tictactoe_rules'
-require 'tictactoe_board'
-require 'comp_player'
+require_relative 'tictactoe_board'
+require_relative 'comp_player'
 require_relative 'web_game_engine'
 
 class TicTacToe < Sinatra::Base
@@ -15,8 +15,11 @@ class TicTacToe < Sinatra::Base
   end
 
   get '/game' do
+    # session['ttt_board'] = TictactoeBoard.new
     @ttt_board = TictactoeBoard.new
-    @test = @ttt_board
+    rules = TictactoeRules.new
+    comp_player = CompPlayer.new
+    @game = WebGameEngine.new({ttt_board: session['ttt_board'], rules: rules, comp_player: comp_player})
     erb :game
   end
 
@@ -24,17 +27,22 @@ class TicTacToe < Sinatra::Base
   #   ttt_board = TictactoeBoard.new
   #   rules = TictactoeRules.new
   #   comp_player = CompPlayer.new
-  #   @game = Game.new({gametype: ttt_board, rules: rules, comp_player: comp_player})
+  #   @game = WebGameEngine.new({ttt_board: @ttt_board, rules: rules, comp_player: comp_player})
+  #   # session['game'] = @game.ttt_board
+
+
+  #   erb :game
   # end
 
   post '/game/move' do
     @ttt_board = TictactoeBoard.new
     rules = TictactoeRules.new
     comp_player = CompPlayer.new
-    @game = WebGameEngine.new({ttt_board: @ttt_board, rules: rules, comp_player: comp_player})
+    @game = WebGameEngine.new(ttt_board: @ttt_board, rules: rules, comp_player: comp_player)
     @player_input = params[:grid_position]
-    @test = @game.ttt_board.move(@player_input)
-    binding.pry
+    @ttt_board = @game.ttt_board.move(@player_input)
+    @ttt_board = @game.comp_player.comp_move(@ttt_board, rules)
+    # binding.pry
 
     erb :game
   end
