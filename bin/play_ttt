@@ -5,7 +5,7 @@ require 'ui'
 require 'tictactoe_board'
 require 'tictactoe_rules'
 require 'comp_player'
-require 'game'
+require 'console_game'
 
 io = Console.new
 ui = Ui.new(io)

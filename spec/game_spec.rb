@@ -1,4 +1,4 @@
-require 'game'
+require 'console_game'
 require 'tictactoe_board'
 require 'tictactoe_rules'
 require 'comp_player'
