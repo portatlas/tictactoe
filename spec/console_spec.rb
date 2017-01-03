@@ -66,7 +66,7 @@ describe Console do
                    "O", "O", "X",
                    "X", "O", "O"]
       winning_game = TictactoeBoard.new
-      winning_game.board = win_board
+      winning_game.board_arr = win_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("X won!")
     end
@@ -76,7 +76,7 @@ describe Console do
                         "O", "O", "X",
                         "O", "O", "O"]
       winning_game = TictactoeBoard.new
-      winning_game.board = comp_win_board
+      winning_game.board_arr = comp_win_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("O won!")
     end
@@ -86,7 +86,7 @@ describe Console do
                     "O", "X", "X",
                     "X", "O", "O"]
       winning_game = TictactoeBoard.new
-      winning_game.board = draw_board
+      winning_game.board_arr = draw_board
       output = capture_puts{ io.display_winner_message(rules, winning_game)}
       expect(output).to include ("It's a draw!")
     end
