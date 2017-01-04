@@ -7,6 +7,7 @@ class ConsoleGameEngine
   def initialize(args)
     @gametype = args.fetch(:gametype, nil)
     @rules = args.fetch(:rules, nil)
+    @first_player = args.fetch(:first_player, nil)
     @comp_player = args.fetch(:comp_player, nil)
     @ui = args.fetch(:ui, nil)
   end
