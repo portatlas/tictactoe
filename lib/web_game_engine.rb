@@ -2,7 +2,7 @@ $: << File.dirname(__FILE__)
 
 class WebGameEngine
 
-  attr_accessor :ttt_board, :comp_player
+  attr_accessor :ttt_board, :comp_player, :rules
 
   def initialize(args)
     @ttt_board = args.fetch(:ttt_board, nil)
