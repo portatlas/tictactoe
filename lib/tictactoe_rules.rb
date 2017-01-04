@@ -14,27 +14,28 @@ class TictactoeRules
      instructions: "You (X) and the computer (O) will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
-  def won?(ttt_board, turn)
+  # not true or false...
+  def winning_indices(ttt_board, turn)
     WIN_COMBOS.detect do |win_combo|
       (ttt_board.board_arr[win_combo[0]]  == turn && ttt_board.board_arr[win_combo[1]]  == turn && ttt_board.board_arr[win_combo[2]]  == turn )
     end
   end
 
   def draw?(board, turn)
-    board.valid_slots == [] && won?(board, turn) == nil
+    board.valid_slots == [] && winning_indices(board, turn) == nil
   end
 
-  def game_over?(board)
-    board.valid_slots == [] || won?(board, "X") || won?(board, "O") ? true : false
+  def game_over?(board, turn)
+    board.valid_slots == [] || winning_indices(board, "X") || winning_indices(board, "O") ? true : false
   end
 
-  def winner(board)
-    if won?(board, turn)
-      "X"
-    elsif won?(board, turn)
-      puts "O"
-    elsif draw?(board, turn)
-      puts "It's a draw!"
+  def winner(ttt_board, turn)
+    if winning_indices(ttt_board, "X")
+      "X won!"
+    elsif winning_indices(ttt_board, "O")
+      "O won!"
+    elsif draw?(ttt_board, ttt_board.turn)
+      "It's a draw!"
     end
   end
 

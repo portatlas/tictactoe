@@ -1,3 +1,5 @@
+require 'pry'
+
 $: << File.dirname(__FILE__)
 
 class ConsoleGameEngine
@@ -13,6 +15,7 @@ class ConsoleGameEngine
   end
 
   def alternate_move
+    ui.prompt_user_for_input(gametype)
     index_position = ui.get_user_input
     if @gametype.valid_move?(index_position)
       @gametype = player_1.user_move(gametype, index_position)
@@ -20,7 +23,6 @@ class ConsoleGameEngine
         @gametype = player_2.ai_move(gametype, rules)
       end
       ui.show_board(@gametype.board_arr)
-      ui.display_winner_message(rules, gametype)
     else
       ui.display_invalid_input
     end
@@ -29,10 +31,11 @@ class ConsoleGameEngine
   def play
     ui.display_intro_msg(rules)
     ui.show_board(gametype.board_arr)
-    while !rules.game_over?(gametype)
-      ui.prompt_user_for_input(gametype)
+    while !rules.game_over?(gametype, gametype.turn)
       alternate_move
     end
+    message = rules.winner(gametype, gametype.turn)
+    ui.display_results(message)
   end
 
 end

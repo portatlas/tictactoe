@@ -30,27 +30,20 @@ class TicTacToe < Sinatra::Base
     @player_input = params[:grid_position].to_i
 
     if session[:board].valid_move?(@player_input)
-      p "OK INPUT"
       session[:board] = @game.player_1.user_move(session[:board], @player_input)
       session[:board] = @game.ttt_board.move(@player_input)
     end
 
-    # @player_input = params[:grid_position]
-    # if session[:board].valid_slots.include?(@player_input.to_i)
-    #   session[:board] = @game.ttt_board.move(@player_input)
-    # end
-
-    # if @game.rules.game_over?(session[:board])
-    #   session[:result] = @game.rules.winner(session[:board], session[:board].turn)
-    #   redirect '/game/result'
-    # else
+    if @game.rules.game_over?(session[:board], session[:board].turn)
+      session[:result] = @game.rules.winner(session[:board], session[:board].turn)
+      redirect to ('/game/result')
+    else
       erb :game
-    # end
+    end
+
   end
 
   get '/game/result' do
-    p session
-    # binding.pry
     erb :result
   end
 

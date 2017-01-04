@@ -58,34 +58,31 @@ describe Console do
   end
 
 
-  describe '#display_winner_message' do
-    it 'returns You won! if the user won the game' do
-      win_board = ["X", "X", "X",
-                   "O", "O", "X",
-                   "X", "O", "O"]
-      winning_game = TictactoeBoard.new
-      winning_game.board_arr = win_board
-      output = capture_puts{ io.display_winner_message(rules, winning_game)}
+  describe '#display_results' do
+    it 'returns X won! if the X won the game' do
+      x_win =  TictactoeBoard.new(["X", "O", "X",
+                                   "O", "X", "X",
+                                   "O", "O", "X"], "X")
+      message = rules.winner(x_win, x_win.turn)
+      output = capture_puts{ io.display_results(message)}
       expect(output).to include ("X won!")
     end
 
-    it 'returns Computer won! if the user won the game' do
-      comp_win_board = ["X", "O", " ",
-                        "O", "O", "X",
-                        "O", "O", "O"]
-      winning_game = TictactoeBoard.new
-      winning_game.board_arr = comp_win_board
-      output = capture_puts{ io.display_winner_message(rules, winning_game)}
+    it 'returns O won! if the user won the game' do
+      o_win =  TictactoeBoard.new(["O", "X", "X",
+                                   "X", "O", "X",
+                                   "X", "O", "O"], "O")
+      message = rules.winner(o_win, o_win.turn)
+      output = capture_puts{ io.display_results(message)}
       expect(output).to include ("O won!")
     end
 
     it 'returns It is a draw! if no one won the game' do
-      draw_board = ["X", "O", "O",
-                    "O", "X", "X",
-                    "X", "O", "O"]
-      winning_game = TictactoeBoard.new
-      winning_game.board_arr = draw_board
-      output = capture_puts{ io.display_winner_message(rules, winning_game)}
+      draw_board =  TictactoeBoard.new(["O", "X", "O",
+                                        "O", "X", "X",
+                                        "X", "O", "O"], "O")
+      message = rules.winner(draw_board, draw_board.turn)
+      output = capture_puts{ io.display_results(message)}
       expect(output).to include ("It's a draw!")
     end
   end

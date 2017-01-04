@@ -27,14 +27,8 @@ class Console
     puts "Invalid input try again"
   end
 
-  def display_winner_message(rules, game_being_played)
-    if rules.won?(game_being_played, "X")
-      puts "X won!"
-    elsif rules.won?(game_being_played, "O")
-      puts "O won!"
-    elsif rules.draw?(game_being_played, game_being_played.turn)
-      puts "It's a draw!"
-    end
+  def display_results(message)
+    puts "#{message}"
   end
 
 end
