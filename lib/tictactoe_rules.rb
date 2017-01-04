@@ -1,3 +1,5 @@
+$: << File.dirname(__FILE__)
+
 class TictactoeRules
 
   attr_reader :desc

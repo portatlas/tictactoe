@@ -1,15 +1,13 @@
-require 'game'
+require 'console_game_engine'
 require 'console'
-require 'ui'
 require 'tictactoe_board'
 require 'tictactoe_rules'
 
 describe Console do
   let(:ttt_board){TictactoeBoard.new}
   let(:io){Console.new}
-  let(:ui){Ui.new(io)}
   let(:rules){TictactoeRules.new}
-  let(:new_game){Game.new({gametype: ttt_board, ui: ui, rules: rules})}
+  let(:new_game){Game.new({gametype: ttt_board, rules: rules})}
 
   describe '#show_board' do
     it 'puts to the screen a tic tac toe board' do

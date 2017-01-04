@@ -1,14 +1,14 @@
 $: << File.dirname(__FILE__)
 
-class Game
+class ConsoleGameEngine
 
-  attr_reader :gametype, :ui, :rules, :comp_player
+  attr_reader :gametype, :rules, :comp_player, :ui
 
   def initialize(args)
-    @ui = args.fetch(:ui, nil)
     @gametype = args.fetch(:gametype, nil)
     @rules = args.fetch(:rules, nil)
     @comp_player = args.fetch(:comp_player, nil)
+    @ui = args.fetch(:ui, nil)
   end
 
   def alternate_move
