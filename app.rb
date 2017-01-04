@@ -38,11 +38,18 @@ class TicTacToe < Sinatra::Base
 
     @player_input = params[:grid_position].to_i
 
-    if session[:game_mode] == 'player'
-      session[:board] = @game.versus_user(session[:board], @game.player_1, @player_input)
-    elsif session[:game_mode] == 'comp'
-      session[:board] = @game.versus_comp(session[:board], rules, @game.player_1, @player_input, @game.player_2)
+    if session[:board].valid_move?(@player_input)
+      session[:message] = "Valid Move"
+      if session[:game_mode] == 'player'
+        session[:board] = @game.versus_user(session[:board], @game.player_1, @player_input)
+      elsif session[:game_mode] == 'comp'
+        session[:board] = @game.versus_comp(session[:board], rules, @game.player_1, @player_input, @game.player_2)
+      end
+    else
+      session[:message] = "Invalid Move"
     end
+
+
 
     if @game.rules.game_over?(session[:board], session[:board].turn)
       session[:result] = @game.rules.winner(session[:board], session[:board].turn)
