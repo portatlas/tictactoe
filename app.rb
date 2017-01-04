@@ -1,10 +1,9 @@
-require 'pry'
 require 'sinatra/base'
-require_relative 'lib/tictactoe_rules'
-require_relative 'lib/tictactoe_board'
-require_relative 'lib/player_user'
-require_relative 'lib/player_ai'
-require_relative 'lib/web_game_engine'
+require './lib/tictactoe_rules'
+require './lib/tictactoe_board'
+require './lib/player_user'
+require './lib/player_ai'
+require './lib/web_game_engine'
 
 class TicTacToe < Sinatra::Base
   enable :sessions
