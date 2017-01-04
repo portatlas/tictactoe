@@ -143,21 +143,21 @@ describe TictactoeRules do
       ttt.board_arr = ["X", "O", "X",
                        "O", "X", "X",
                        "O", "X", "X"]
-      expect(ttt_rules.game_over?(ttt)).to eq true
+      expect(ttt_rules.game_over?(ttt, ttt.turn)).to eq true
     end
 
     it 'returns true if there is a tie' do
       ttt.board_arr = ["X", "O", "X",
                        "X", "O", "O",
                        "O", "X", "O"]
-      expect(ttt_rules.game_over?(ttt)).to eq true
+      expect(ttt_rules.game_over?(ttt, ttt.turn)).to eq true
     end
 
     it 'returns false if there is an open slot' do
       ttt.board_arr = ["X", "O", "X",
                        "O", " ", " ",
                        "O", "X", "X"]
-      expect(ttt_rules.game_over?(ttt)).to eq false
+      expect(ttt_rules.game_over?(ttt, ttt.turn)).to eq false
     end
   end
 

@@ -34,17 +34,15 @@ class TicTacToe < Sinatra::Base
       session[:board] = @game.ttt_board.move(@player_input)
     end
 
-    # @player_input = params[:grid_position]
-    # if session[:board].valid_slots.include?(@player_input.to_i)
-    #   session[:board] = @game.ttt_board.move(@player_input)
-    # end
-
-    if @game.rules.game_over?(session[:board])
+    if @game.rules.game_over?(session[:board], session[:board].turn)
       if @game.rules.draw?(session[:board], session[:board].turn)
         session[:result] = "draw"
         redirect to ('/game/result')
-      elsif @game.rules.won?(session[:board], session[:board].turn)
-        session[:result] = @game.rules.winner(session[:board], session[:board].turn)[0]
+        # doesn't hit the elsif conditional.... why?
+      else
+        # @game.rules.won?(session[:board], session[:board].turn)
+        session[:result] = @game.rules.winner(session[:board], session[:board].turn)
+        binding.pry
         redirect to ('/game/result')
       end
     else

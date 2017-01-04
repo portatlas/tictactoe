@@ -29,8 +29,8 @@ class TictactoeRules
     board.valid_slots == [] && winning_indices(board, turn) == nil
   end
 
-  def game_over?(board)
-    board.valid_slots == [] || winning_indices(board, "X") || winning_indices(board, "O") ? true : false
+  def game_over?(board, turn)
+    board.valid_slots == [] || won?(board, turn) ? true : false
   end
 
   def winner(board, turn)
