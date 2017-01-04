@@ -14,12 +14,12 @@ describe PlayerUser do
                               " ", " ", " ",
                               " ", " ", " "]
 
-      expect(player_user.user_move(played_ttt, ttt_rules, 2)).to be_an_instance_of(TictactoeBoard)
+      expect(player_user.user_move(played_ttt, 2)).to be_an_instance_of(TictactoeBoard)
     end
 
     it 'moves the piece on the TicTacToe board if a move is made' do
 
-      moved_board = player_user.user_move(ttt, ttt_rules, 0)
+      moved_board = player_user.user_move(ttt, 0)
 
       expect(moved_board.board_arr).to eq ["X", " ", " ",
                                    " ", " ", " ",
