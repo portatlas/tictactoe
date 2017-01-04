@@ -2,7 +2,7 @@ require 'pry'
 require 'sinatra/base'
 require_relative 'lib/tictactoe_rules'
 require_relative 'lib/tictactoe_board'
-require_relative 'lib/comp_player'
+require_relative 'lib/player_ai'
 require_relative 'lib/web_game_engine'
 
 class TicTacToe < Sinatra::Base
@@ -22,7 +22,7 @@ class TicTacToe < Sinatra::Base
 
   post '/game/move' do
     rules = TictactoeRules.new
-    comp_player = CompPlayer.new
+    comp_player = PlayerAi.new
     @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, comp_player: comp_player})
 
     @player_input = params[:grid_position]
