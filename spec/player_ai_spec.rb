@@ -1,11 +1,11 @@
 require 'tictactoe_board'
 require 'tictactoe_rules'
-require 'comp_player'
+require 'player_ai'
 
-describe CompPlayer do
+describe PlayerAi do
   let(:ttt){TictactoeBoard.new}
   let(:ttt_rules){TictactoeRules.new}
-  let(:comp_player){CompPlayer.new}
+  let(:comp_player){PlayerAi.new}
 
   describe '#minimax' do
     context 'a player wins' do
@@ -89,14 +89,14 @@ describe CompPlayer do
     end
   end
 
-  describe '#comp_move' do
+  describe '#ai_move' do
     it 'returns a TicTacToe board if a move is made' do
       played_ttt = TictactoeBoard.new
       played_ttt.board_arr = ["X", " ", " ",
                               " ", " ", " ",
                               " ", " ", " "]
 
-      expect(comp_player.comp_move(played_ttt, ttt_rules)).to be_an_instance_of(TictactoeBoard)
+      expect(comp_player.ai_move(played_ttt, ttt_rules)).to be_an_instance_of(TictactoeBoard)
     end
 
     # it 'returns nil if comp move was not made' do
@@ -105,7 +105,7 @@ describe CompPlayer do
     #                           "O", "X", "O",
     #                           "O", "X", "O"]
 
-    #   expect(comp_player.comp_move(played_ttt, ttt_rules)).to eq nil
+    #   expect(comp_player.ai_move(played_ttt, ttt_rules)).to eq nil
     # end
   end
 

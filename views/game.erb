@@ -7,21 +7,24 @@
 
   <table style="border: 10px solid black;">
     <tr>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[0] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[1] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[2] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[0] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[1] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[2] %></td>
     </tr>
     <tr>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[3] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[4] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[5] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[3] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[4] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[5] %></td>
     </tr>
     <tr>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[6] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[7] %></td>
-      <td style="border: 10px solid black;"><%= @ttt_board.board_arr[8] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[6] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[7] %></td>
+      <td style="border: 10px solid black;"><%= session[:board].board_arr[8] %></td>
     </tr>
   </table>
+
+  <h2><%= session[:board].turn%>'s' Turn</h2>
+  <h2>Enter a number between <%= session[:board].valid_slots %> that corresponds with the opening slots starting from the top left. </h2>
 
   <form method='post' action='/game/move'>
     <label for='grid_position'>Position:</label>
@@ -29,5 +32,7 @@
     <input type='submit' value='Submit' />
   </form>
 
+
 </body>
 </html>
+

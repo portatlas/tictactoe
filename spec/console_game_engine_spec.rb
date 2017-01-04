@@ -1,14 +1,14 @@
 require 'console_game_engine'
 require 'tictactoe_board'
 require 'tictactoe_rules'
-require 'comp_player'
+require 'player_ai'
 require 'console'
 
 describe ConsoleGameEngine do
   let(:ttt_board){TictactoeBoard.new}
   let(:io){Console.new}
   let(:rules){TictactoeRules.new}
-  let(:comp_player){CompPlayer.new}
+  let(:comp_player){PlayerAi.new}
   let(:new_game){ConsoleGameEngine.new({gametype: ttt_board, rules: rules, comp_player: comp_player})}
 
   describe ' #initialize' do

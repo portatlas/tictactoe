@@ -45,6 +45,17 @@ describe TictactoeBoard do
     end
   end
 
+  describe '#valid_move?' do
+    it 'returns true if the move is a valid move' do
+      expect(ttt.valid_move?(0)).to be true
+    end
+
+    it 'returns false if the move is a not valid move' do
+      full_board = TictactoeBoard.new.move(2)
+      expect(full_board.valid_move?(2)).to be false
+    end
+  end
+
   describe '#whose_turn' do
     it 'returns X when it is Xs turn' do
       ttt = TictactoeBoard.new.move(0).move(1).move(8)

@@ -58,7 +58,7 @@ describe Console do
   end
 
 
-  describe '#winner' do
+  describe '#display_winner_message' do
     it 'returns You won! if the user won the game' do
       win_board = ["X", "X", "X",
                    "O", "O", "X",

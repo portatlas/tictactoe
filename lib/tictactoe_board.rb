@@ -20,6 +20,10 @@ class TictactoeBoard
     @board_arr.each_with_index.map{|symbol, index| index if symbol==" "}.reject{|slots| slots == nil }
   end
 
+  def valid_move?(input_position)
+    valid_slots.include?(input_position)
+  end
+
   def whose_turn(x, o)
     turn == "X" ? x : o
   end
