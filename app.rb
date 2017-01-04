@@ -23,9 +23,9 @@ class TicTacToe < Sinatra::Base
 
   post '/game/move' do
     rules = TictactoeRules.new
-    user_player = PlayerUser.new
-    comp_player = PlayerAi.new
-    @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, player_1: user_player, player_2: comp_player})
+    user_player_1 = PlayerUser.new
+    user_player_2 = PlayerUser.new
+    @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, player_1: user_player_1, player_2: user_player_2})
 
     @player_input = params[:grid_position].to_i
 
