@@ -1,19 +1,15 @@
-<html>
-<head>
-  <title>Tic Tac Toe</title>
-</head>
-<body>
-  <h2><%= @ttt_rules.desc[:name] %></h2>
-  <h4><%= @ttt_rules.desc[:instructions] %></h4>
+<div>
+  <h2><%= @ttt_rules.desc[:instructions] %></h2>
 
   <form method='post' action='/game'>
-      <h4>Play against:</h4>
-      <input type='radio' id='comp' value='comp' name='mode' checked>Computer</input>
-      </br>
-      <input type='radio' id='player' value='player' name='mode'>Another Player</input>
-      </br>
-      <input type='submit' value='Play now'>
-    </form>
+    <h2>Play against:</h2>
+    <input type='radio' id='comp' value='comp' name='mode' checked>Computer</input>
+    </br>
+    <input type='radio' id='player' value='player' name='mode'>Another Player</input>
+    </br>
+    <input class="button" type='submit' value='PLAY NOW'>
+  </form>
 
-</body>
-</html>
+  <iframe src="//giphy.com/embed/Xs4YDTIh7Yt6E" width="280" height="280" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/math-art-Xs4YDTIh7Yt6E"></a></p>
+
+</div>
