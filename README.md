@@ -39,6 +39,7 @@ Iteration 3)
 1. I learned about the concept of minimax algorithm and how to apply it to a game like tic tac toe
 2. I learned about the send method and how to use it to dynamically pass in different parameters based on a given situation
 3. TDD saves time and heartache
+4. When refactoring consider how the code will interact with other components of the code. Does the current Class have more than one reason for change? Will state change? Does it serve a single purpose?
 
 ##What I can do to improve the application
 1. Create a more user interactive interface
