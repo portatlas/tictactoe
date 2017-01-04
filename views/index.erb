@@ -6,6 +6,14 @@
   <h2><%= @ttt_rules.desc[:name] %></h2>
   <h4><%= @ttt_rules.desc[:instructions] %></h4>
 
-  <a href="/game">Start</a>
+  <form method='post' action='/game'>
+      <h4>Play against:</h4>
+      <input type='radio' id='comp' value='comp' name='mode' checked>Computer</input>
+      </br>
+      <input type='radio' id='player' value='player' name='mode'>Another Player</input>
+      </br>
+      <input type='submit' value='Play now'>
+    </form>
+
 </body>
 </html>
