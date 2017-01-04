@@ -26,9 +26,22 @@ class TicTacToe < Sinatra::Base
     @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, comp_player: comp_player})
 
     @player_input = params[:grid_position]
-    session[:board] = @game.ttt_board.move(@player_input)
+    if session[:board].valid_slots.include?(@player_input.to_i)
+      session[:board] = @game.ttt_board.move(@player_input)
+    end
 
-    erb :game
+    # if @game.rules.game_over?(session[:board])
+    #   session[:result] = @game.rules.winner(session[:board], session[:board].turn)
+    #   redirect '/game/result'
+    # else
+      erb :game
+    # end
+  end
+
+  get '/game/result' do
+    p session
+    # binding.pry
+    erb :result
   end
 
 
