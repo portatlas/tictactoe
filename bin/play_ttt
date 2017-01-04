@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 
 require './lib/console'
-require 'ui'
-require 'tictactoe'
-require 'game'
+require 'tictactoe_board'
+require 'tictactoe_rules'
+require 'player_ai'
+require 'player_user'
+require 'console_game_engine'
 
-io = Console.new
-ui = Ui.new(io)
-ttt = TicTacToe.new
-new_game = Game.new({gametype: ttt, ui: ui})
+console = Console.new
+board = TictactoeBoard.new
+rules = TictactoeRules.new
+user_player = PlayerUser.new
+comp_player = PlayerAi.new
+new_game = ConsoleGameEngine.new({ttt_board: board, rules: rules, player_1: user_player, player_2: comp_player, ui: console})
 new_game.play

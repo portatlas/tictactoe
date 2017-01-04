@@ -1,0 +1,21 @@
+<div class="centered">
+  <%= erb :board %>
+
+  <h2 class="message"><%= session[:message]%></h2>
+
+  <h2><%= session[:board].turn%>'s Turn</h2>
+
+  <h2>Enter a number between <%= session[:board].valid_slots %> that corresponds with the opening slots starting from the top left. </h2>
+
+
+  <form method='post' action='/game/move'>
+    <label for='grid_position'>POSITION: </label>
+    <input type='text' name='grid_position' id='grid_position' autofocus />
+    <br>
+    <input class="button" type='submit' value='SUBMIT' />
+  </form>
+
+
+</div>
+
+
