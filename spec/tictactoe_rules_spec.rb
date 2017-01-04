@@ -138,4 +138,34 @@ describe TictactoeRules do
     end
   end
 
+  describe ' #winner' do
+    it 'returns X if X won' do
+      x_win =  TictactoeBoard.new(["X", "O", "X",
+                                   "O", "X", "X",
+                                   "O", "X", "X"], "X")
+      expect(ttt_rules.winner(x_win, x_win.turn)).to eq "X won!"
+    end
+
+    it 'returns O if O won' do
+      o_win =  TictactoeBoard.new(["O", "X", "X",
+                                   "X", "O", "X",
+                                   "X", "O", "O"], "O")
+      expect(ttt_rules.winner(o_win, o_win.turn)).to eq "O won!"
+    end
+
+    it 'returns its a draw if no one won' do
+      draw_board =  TictactoeBoard.new(["O", "X", "O",
+                                        "O", "X", "X",
+                                        "X", "O", "O"], "O")
+      expect(ttt_rules.winner(draw_board, draw_board.turn)).to eq "It's a draw!"
+    end
+
+    it 'returns nil if no one won' do
+      ttt.board_arr = ["X", "O", "X",
+                       "O", " ", " ",
+                       "O", "X", "X"]
+      expect(ttt_rules.game_over?(ttt, ttt.turn)).to be false
+    end
+  end
+
 end
