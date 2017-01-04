@@ -6,10 +6,7 @@ class ConsoleGameEngine < GameEngine
   attr_reader :ui
 
   def initialize(args)
-    @ttt_board = args.fetch(:ttt_board, nil)
-    @rules = args.fetch(:rules, nil)
-    @player_1 = args.fetch(:player_1, nil)
-    @player_2 = args.fetch(:player_2, nil)
+    super
     @ui = args.fetch(:ui, nil)
   end
 
