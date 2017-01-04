@@ -35,16 +35,8 @@ class TicTacToe < Sinatra::Base
     end
 
     if @game.rules.game_over?(session[:board], session[:board].turn)
-      if @game.rules.draw?(session[:board], session[:board].turn)
-        session[:result] = "draw"
-        redirect to ('/game/result')
-      elsif @game.rules.winning_indices(session[:board], "X")
-        session[:result] = "X won"
-        redirect to ('/game/result')
-      elsif @game.rules.winning_indices(session[:board], "O")
-        session[:result] = "O won"
-        redirect to ('/game/result')
-      end
+      session[:result] = @game.rules.winner(session[:board], session[:board].turn)
+      redirect to ('/game/result')
     else
       erb :game
     end
