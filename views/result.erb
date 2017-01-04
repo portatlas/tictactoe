@@ -1,12 +1,8 @@
-<html>
-<head>
-  <title>TicTacToe</title>
-</head>
-<body>
-  <h1>Result</h1>
-  <h1> <%= session[:result] %></h1>
-  <h1> <%= @result %> </h1>
+<div class="centered">
+  <h1>Result:</h1>
+  <h2 class="message"> <%= session[:result] %></h2>
 
-  <a href="/">Play Again</a>
-</body>
-</html>
+  <%= erb :board %>
+
+  <a class="button" href="/">PLAY AGAIN</a>
+</div>
