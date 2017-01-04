@@ -7,13 +7,16 @@ require 'console'
 describe ConsoleGameEngine do
   let(:ttt_board){TictactoeBoard.new}
   let(:io){Console.new}
-  let(:rules){TictactoeRules.new}
+  let(:ttt_rules){TictactoeRules.new}
   let(:comp_player){PlayerAi.new}
-  let(:new_game){ConsoleGameEngine.new({gametype: ttt_board, rules: rules, comp_player: comp_player})}
+  let(:new_game){ConsoleGameEngine.new({gametype: ttt_board, rules: ttt_rules, comp_player: comp_player})}
 
   describe ' #initialize' do
     it 'with a new instance of TicTacToe' do
       expect(new_game.gametype).to eq(ttt_board)
+    end
+    it 'with a new instance of TicTacToeRules' do
+      expect(new_game.rules).to eq(ttt_rules)
     end
   end
 
@@ -34,7 +37,7 @@ describe ConsoleGameEngine do
       new_game.play
     end
 
-    it 'stops playing when the game is not over' do
+    it 'stops playing when the game is over' do
       played_ttt = TictactoeBoard.new
       played_ttt.board_arr = ["X", "O", "X",
                               "O", "X", "O",
