@@ -2,7 +2,7 @@ $: << File.dirname(__FILE__)
 
 class ConsoleGameEngine
 
-  attr_reader :gametype, :rules, :comp_player, :ui
+  attr_reader :gametype, :rules, :comp_player, :ui, :first_player
 
   def initialize(args)
     @gametype = args.fetch(:gametype, nil)
@@ -14,8 +14,8 @@ class ConsoleGameEngine
 
   def alternate_move
     index_position = ui.get_user_input
-    if @gametype.valid_slots.include?(index_position)
-      @gametype = gametype.move(index_position)
+    if @gametype.valid_move?(index_position)
+      @gametype = first_player.user_move(gametype, index_position)
       if !@gametype.valid_slots.empty?
         @gametype = comp_player.ai_move(gametype, rules)
       end
