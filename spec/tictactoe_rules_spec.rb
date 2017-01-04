@@ -23,62 +23,62 @@ describe TictactoeRules do
     end
   end
 
-  describe '#won?' do
+  describe '#winning_indices' do
     context 'returns the winning indices' do
       it 'for the top row of the winning combination' do
         ttt.board_arr = ["X", "X", "X",
                      "O", "O", "X",
                      "O", "X", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq [0,1,2]
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq [0,1,2]
       end
 
       it 'for the second row of the winning combination' do
         ttt.board_arr = ["X", "O", "X",
                      "O", "O", "O",
                      "X", "X", "O"]
-        expect(ttt_rules.won?(ttt, "O")).to eq [3,4,5]
+        expect(ttt_rules.winning_indices(ttt, "O")).to eq [3,4,5]
       end
 
       it 'for the bottom row of the winning combination' do
         ttt.board_arr = ["X", "O", "X",
                      "O", "X", "O",
                      "X", "X", "X"]
-        expect(ttt_rules.won?(ttt, "X")).to eq [6,7,8]
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq [6,7,8]
       end
 
       it 'for the first column of the winning combination' do
         ttt.board_arr = ["X", "O", "X",
                      "X", "O", "X",
                      "X", "O", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq [0,3,6]
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq [0,3,6]
       end
 
       it 'for the second column of the winning combination' do
         ttt.board_arr = ["O", "O", "X",
                      "X", "O", "X",
                      "X", "O", "O"]
-        expect(ttt_rules.won?(ttt, "O")).to eq [1,4,7]
+        expect(ttt_rules.winning_indices(ttt, "O")).to eq [1,4,7]
       end
 
       it 'for the third column of the winning combination' do
         ttt.board_arr = ["X", "O", "X",
                      "O", "O", "X",
                      "O", "X", "X"]
-        expect(ttt_rules.won?(ttt, "X")).to eq [2,5,8]
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq [2,5,8]
       end
 
       it 'for the north west to south east diagonal of the winning combination' do
         ttt.board_arr = ["O", "X", "X",
                      "X", "O", "X",
                      "X", "O", "O"]
-        expect(ttt_rules.won?(ttt, "O")).to eq [0,4,8]
+        expect(ttt_rules.winning_indices(ttt, "O")).to eq [0,4,8]
       end
 
       it 'for the north east to south west of the winning combination' do
         ttt.board_arr = ["X", "O", "X",
                      "O", "X", "X",
                      "X", "O", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq [2,4,6]
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq [2,4,6]
       end
     end
 
@@ -87,14 +87,14 @@ describe TictactoeRules do
         ttt.board_arr = ["X", "O", "X",
                      "X", "O", "O",
                      "O", "X", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq nil
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq nil
       end
 
       it 'if there is an open slot' do
         ttt.board_arr = ["X", "O", "X",
                      "X", " ", "O",
                      "O", "X", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq nil
+        expect(ttt_rules.winning_indices(ttt, "X")).to eq nil
       end
     end
   end
