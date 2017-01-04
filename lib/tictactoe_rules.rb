@@ -11,10 +11,9 @@ class TictactoeRules
   def initialize
     @desc = {
              name: "TacTacToe",
-     instructions: "You (X) and the computer (O) will take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
+     instructions: "Two players take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
-  # not true or false...
   def winning_indices(ttt_board, turn)
     WIN_COMBOS.detect do |win_combo|
       (ttt_board.board_arr[win_combo[0]]  == turn && ttt_board.board_arr[win_combo[1]]  == turn && ttt_board.board_arr[win_combo[2]]  == turn )
