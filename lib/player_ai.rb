@@ -17,7 +17,7 @@ class PlayerAi
     board.valid_slots.send(board.whose_turn(:max_by, :min_by)){|index| minimax(board.move(index), rules)}
   end
 
-  def comp_move(board, rules)
+  def ai_move(board, rules)
     board.move(optimal_move(board, rules))
   end
 

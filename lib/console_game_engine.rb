@@ -16,7 +16,7 @@ class ConsoleGameEngine
     if @gametype.valid_slots.include?(index_position)
       @gametype = gametype.move(index_position)
       if !@gametype.valid_slots.empty?
-        @gametype = comp_player.comp_move(gametype, rules)
+        @gametype = comp_player.ai_move(gametype, rules)
       end
       ui.show_board(@gametype.board_arr)
       ui.display_winner_message(rules, gametype)
