@@ -39,9 +39,9 @@ class TicTacToe < Sinatra::Base
     @player_input = params[:grid_position].to_i
 
     if session[:game_mode] == 'player'
-      versus_user
+      session[:board] = @game.versus_user(session[:board], @game.player_1, @player_input)
     elsif session[:game_mode] == 'comp'
-      versus_comp(rules)
+      session[:board] = @game.versus_comp(session[:board], rules, @game.player_1, @player_input, @game.player_2)
     end
 
     if @game.rules.game_over?(session[:board], session[:board].turn)
@@ -56,21 +56,6 @@ class TicTacToe < Sinatra::Base
   get '/game/result' do
     erb :result
   end
-
-  def versus_user
-    if session[:board].valid_move?(@player_input)
-      session[:board] = @game.player_1.user_move(session[:board], @player_input)
-    end
-  end
-
-  def versus_comp(rules)
-    if session[:board].valid_move?(@player_input)
-      session[:board] = @game.player_1.user_move(session[:board], @player_input)
-      session[:board] = @game.player_2.ai_move(session[:board], rules)
-    end
-  end
-
-
 
 
 end
