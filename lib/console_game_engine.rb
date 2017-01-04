@@ -1,3 +1,5 @@
+require 'pry'
+
 $: << File.dirname(__FILE__)
 
 class ConsoleGameEngine
@@ -21,7 +23,6 @@ class ConsoleGameEngine
         @gametype = player_2.ai_move(gametype, rules)
       end
       ui.show_board(@gametype.board_arr)
-      ui.display_winner_message(rules, gametype)
     else
       ui.display_invalid_input
     end
@@ -33,6 +34,8 @@ class ConsoleGameEngine
     while !rules.game_over?(gametype, gametype.turn)
       alternate_move
     end
+    message = rules.winner(gametype, gametype.turn)
+    ui.display_results(message)
   end
 
 end
