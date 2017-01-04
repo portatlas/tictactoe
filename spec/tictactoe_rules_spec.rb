@@ -99,6 +99,29 @@ describe TictactoeRules do
     end
   end
 
+  describe '#won?' do
+    it 'returns false if no one wins and the board is full' do
+        ttt.board_arr = ["X", "O", "X",
+                         "X", "O", "O",
+                         "O", "X", "O"]
+        expect(ttt_rules.won?(ttt, "X")).to eq false
+    end
+
+    it 'returns false if no one wins and the board is empty' do
+        ttt.board_arr = [" ", " ", " ",
+                         " ", " ", " ",
+                         " ", " ", " "]
+        expect(ttt_rules.won?(ttt, "X")).to eq false
+    end
+
+    it 'returns true if there is a winner' do
+        ttt.board_arr = ["X", "O", "X",
+                         "X", "O", " ",
+                         "O", "O", "O"]
+        expect(ttt_rules.won?(ttt, "O")).to eq true
+    end
+  end
+
   describe '#draw?' do
     it 'returns true if no one wins and the board is full' do
         ttt.board_arr = ["X", "O", "X",

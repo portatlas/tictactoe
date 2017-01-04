@@ -44,7 +44,7 @@ class TicTacToe < Sinatra::Base
         session[:result] = "draw"
         redirect to ('/game/result')
       elsif @game.rules.won?(session[:board], session[:board].turn)
-        session[:result] = @game.rules.won?(session[:board], session[:board].turn)[0]
+        session[:result] = @game.rules.winner(session[:board], session[:board].turn)[0]
         redirect to ('/game/result')
       end
     else
