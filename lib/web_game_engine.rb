@@ -1,9 +1,10 @@
 $: << File.dirname(__FILE__)
+require 'game_engine'
 
-class WebGameEngine
+class WebGameEngine < GameEngine
 
-  attr_accessor :ttt_board
-  attr_reader :player_1, :player_2, :rules
+  # attr_accessor :ttt_board
+  # attr_reader :player_1, :player_2, :rules
 
   def initialize(args)
     @ttt_board = args.fetch(:ttt_board, nil)
