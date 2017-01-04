@@ -38,7 +38,6 @@ class TicTacToe < Sinatra::Base
       if @game.rules.draw?(session[:board], session[:board].turn)
         session[:result] = "draw"
         redirect to ('/game/result')
-        # doesn't hit the elsif conditional.... why?
       elsif @game.rules.winning_indices(session[:board], "X")
         session[:result] = "X won"
         redirect to ('/game/result')

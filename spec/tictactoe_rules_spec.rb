@@ -99,29 +99,6 @@ describe TictactoeRules do
     end
   end
 
-  describe '#won?' do
-    it 'returns false if no one wins and the board is full' do
-        ttt.board_arr = ["X", "O", "X",
-                         "X", "O", "O",
-                         "O", "X", "O"]
-        expect(ttt_rules.won?(ttt, "X")).to eq false
-    end
-
-    it 'returns false if no one wins and the board is empty' do
-        ttt.board_arr = [" ", " ", " ",
-                         " ", " ", " ",
-                         " ", " ", " "]
-        expect(ttt_rules.won?(ttt, "X")).to eq false
-    end
-
-    it 'returns true if there is a winner' do
-        ttt.board_arr = ["X", "O", "X",
-                         "X", "O", " ",
-                         "O", "O", "O"]
-        expect(ttt_rules.won?(ttt, "O")).to eq true
-    end
-  end
-
   describe '#draw?' do
     it 'returns true if no one wins and the board is full' do
         ttt.board_arr = ["X", "O", "X",
@@ -159,36 +136,6 @@ describe TictactoeRules do
                        "O", "X", "X"]
       expect(ttt_rules.game_over?(ttt, ttt.turn)).to eq false
     end
-  end
-
-  describe ' #winner' do
-      it 'returns X if X is the winner' do
-        ttt.board_arr = ["X", "O", "X",
-                         "O", "X", "X",
-                         "X", "O", "O"]
-        expect(ttt_rules.winner(ttt, "X")).to eq "X"
-      end
-
-      it 'returns O if O is the winner' do
-        ttt.board_arr = ["X", "O", "X",
-                         "O", "O", "X",
-                         "X", "O", "O"]
-        expect(ttt_rules.winner(ttt, "O")).to eq "O"
-      end
-
-      it 'return nil if there is no winner' do
-        ttt.board_arr = ["X", "O", "X",
-                         "O", "X", "X",
-                         "X", "O", "O"]
-        expect(ttt_rules.winner(ttt, "O")).to eq nil
-      end
-
-      it 'returns nil if there is no winner' do
-        ttt.board_arr = ["X", "O", "X",
-                         "O", " ", "X",
-                         "X", "O", "O"]
-        expect(ttt_rules.winner(ttt, "O")).to eq nil
-      end
   end
 
 end

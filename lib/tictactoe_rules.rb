@@ -21,28 +21,12 @@ class TictactoeRules
     end
   end
 
-  def won?(board, turn)
-    winning_indices(board, turn) != nil
-  end
-
   def draw?(board, turn)
     board.valid_slots == [] && winning_indices(board, turn) == nil
   end
 
   def game_over?(board, turn)
     board.valid_slots == [] || winning_indices(board, "X") || winning_indices(board, "O") ? true : false
-  end
-
-  def winner(board, turn)
-    if won?(board, turn)
-      winning_indices(board, turn).each do |index|
-        if board.board_arr[index] == turn.to_s
-          return turn
-        end
-      end
-    else
-      nil
-    end
   end
 
 end
