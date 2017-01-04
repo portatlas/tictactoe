@@ -1,6 +1,6 @@
 $: << File.dirname(__FILE__)
 
-class CompPlayer
+class PlayerAi
 
   def minimax(board, rules, increment = 10)
     return 1000 if rules.won?(board, "X")

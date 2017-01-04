@@ -1,11 +1,11 @@
 require 'tictactoe_board'
 require 'tictactoe_rules'
-require 'comp_player'
+require 'player_ai'
 
-describe CompPlayer do
+describe PlayerAi do
   let(:ttt){TictactoeBoard.new}
   let(:ttt_rules){TictactoeRules.new}
-  let(:comp_player){CompPlayer.new}
+  let(:comp_player){PlayerAi.new}
 
   describe '#minimax' do
     context 'a player wins' do
