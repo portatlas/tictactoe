@@ -11,7 +11,7 @@ class TictactoeRules
   def initialize
     @desc = {
              name: "TacTacToe",
-     instructions: "Two players take turns placing a 'X' and 'O' respectively, the player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
+     instructions: "Two players take turns placing a 'X' and 'O' respectively on a 3 x 3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins."}
   end
 
   def winning_indices(ttt_board, turn)
