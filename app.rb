@@ -2,6 +2,7 @@ require 'pry'
 require 'sinatra/base'
 require_relative 'lib/tictactoe_rules'
 require_relative 'lib/tictactoe_board'
+require_relative 'lib/player_user'
 require_relative 'lib/player_ai'
 require_relative 'lib/web_game_engine'
 
@@ -22,13 +23,22 @@ class TicTacToe < Sinatra::Base
 
   post '/game/move' do
     rules = TictactoeRules.new
+    user_player = PlayerUser.new
     comp_player = PlayerAi.new
-    @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, comp_player: comp_player})
+    @game = WebGameEngine.new({ttt_board: session[:board], rules: rules, player_1: user_player, player_2: comp_player})
 
-    @player_input = params[:grid_position]
-    if session[:board].valid_slots.include?(@player_input.to_i)
+    @player_input = params[:grid_position].to_i
+
+    if session[:board].valid_move?(@player_input)
+      p "OK INPUT"
+      session[:board] = @game.player_1.user_move(session[:board], @player_input)
       session[:board] = @game.ttt_board.move(@player_input)
     end
+
+    # @player_input = params[:grid_position]
+    # if session[:board].valid_slots.include?(@player_input.to_i)
+    #   session[:board] = @game.ttt_board.move(@player_input)
+    # end
 
     # if @game.rules.game_over?(session[:board])
     #   session[:result] = @game.rules.winner(session[:board], session[:board].turn)
