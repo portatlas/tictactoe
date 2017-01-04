@@ -22,8 +22,8 @@ describe PlayerUser do
       moved_board = player_user.user_move(ttt, 0)
 
       expect(moved_board.board_arr).to eq ["X", " ", " ",
-                                   " ", " ", " ",
-                                   " ", " ", " "]
+                                           " ", " ", " ",
+                                           " ", " ", " "]
     end
 
   end
