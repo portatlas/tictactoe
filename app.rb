@@ -49,8 +49,6 @@ class TicTacToe < Sinatra::Base
       session[:message] = "Invalid Move"
     end
 
-
-
     if @game.rules.game_over?(session[:board], session[:board].turn)
       session[:result] = @game.rules.winner(session[:board], session[:board].turn)
       redirect to ('/game/result')
