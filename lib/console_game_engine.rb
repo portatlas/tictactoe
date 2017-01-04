@@ -1,28 +1,24 @@
-require 'pry'
-
 $: << File.dirname(__FILE__)
+require 'game_engine'
 
-class ConsoleGameEngine
+class ConsoleGameEngine < GameEngine
 
-  attr_reader :gametype, :rules, :player_1, :player_2, :ui
+  attr_reader :ui
 
   def initialize(args)
-    @gametype = args.fetch(:gametype, nil)
-    @rules = args.fetch(:rules, nil)
-    @player_1 = args.fetch(:player_1, nil)
-    @player_2 = args.fetch(:player_2, nil)
+    super
     @ui = args.fetch(:ui, nil)
   end
 
   def alternate_move
-    ui.prompt_user_for_input(gametype)
+    ui.prompt_user_for_input(ttt_board)
     index_position = ui.get_user_input
-    if @gametype.valid_move?(index_position)
-      @gametype = player_1.user_move(gametype, index_position)
-      if !@gametype.valid_slots.empty?
-        @gametype = player_2.ai_move(gametype, rules)
+    if @ttt_board.valid_move?(index_position)
+      @ttt_board = player_1.user_move(ttt_board, index_position)
+      if !@ttt_board.valid_slots.empty?
+        @ttt_board = player_2.ai_move(ttt_board, rules)
       end
-      ui.show_board(@gametype.board_arr)
+      ui.show_board(@ttt_board.board_arr)
     else
       ui.display_invalid_input
     end
@@ -30,11 +26,11 @@ class ConsoleGameEngine
 
   def play
     ui.display_intro_msg(rules)
-    ui.show_board(gametype.board_arr)
-    while !rules.game_over?(gametype, gametype.turn)
+    ui.show_board(ttt_board.board_arr)
+    while !rules.game_over?(ttt_board, ttt_board.turn)
       alternate_move
     end
-    message = rules.winner(gametype, gametype.turn)
+    message = rules.winner(ttt_board, ttt_board.turn)
     ui.display_results(message)
   end
 

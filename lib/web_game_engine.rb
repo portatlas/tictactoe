@@ -1,16 +1,19 @@
 $: << File.dirname(__FILE__)
+require 'game_engine'
 
-class WebGameEngine
-
-  attr_accessor :ttt_board
-  attr_reader :player_1, :player_2, :rules
+class WebGameEngine < GameEngine
 
   def initialize(args)
-    @ttt_board = args.fetch(:ttt_board, nil)
-    @player_1 = args.fetch(:player_1, nil)
-    @player_2 = args.fetch(:player_2, nil)
-    @rules = args.fetch(:rules, nil)
+    super
   end
 
+  def versus_user(current_board, player, user_input)
+    current_board = player.user_move(current_board, user_input)
+  end
+
+  def versus_comp(current_board, rules, player_1, player_1_input, player_2)
+      current_board = player_1.user_move(current_board, player_1_input)
+      current_board = player_2.ai_move(current_board, rules)
+  end
 
 end
