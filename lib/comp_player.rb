@@ -7,7 +7,10 @@ class CompPlayer
     return -1000 if rules.won?(board, "O")
     return 0 if rules.draw?(board, board.turn)
 
-    board.valid_slots.map{ |index| minimax(board.move(index), rules, increment + 10) }.send(board.whose_turn(:max, :min)) + board.whose_turn(-increment, increment)
+    @@minimax_cache ||= {}
+    value = @@minimax_cache[board]
+    return value if value
+    @@minimax_cache[board] = board.valid_slots.map{ |index| minimax(board.move(index), rules, increment + 10) }.send(board.whose_turn(:max, :min)) + board.whose_turn(-increment, increment)
   end
 
   def optimal_move(board, rules)
