@@ -29,4 +29,14 @@ class TictactoeRules
     board.valid_slots == [] || winning_indices(board, "X") || winning_indices(board, "O") ? true : false
   end
 
+  def winner(ttt_board, turn)
+    if winning_indices(ttt_board, "X")
+      "X won!"
+    elsif winning_indices(ttt_board, "O")
+      "O won!"
+    elsif draw?(ttt_board, ttt_board.turn)
+      "It's a draw!"
+    end
+  end
+
 end
