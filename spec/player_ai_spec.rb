@@ -89,14 +89,14 @@ describe PlayerAi do
     end
   end
 
-  describe '#comp_move' do
+  describe '#ai_move' do
     it 'returns a TicTacToe board if a move is made' do
       played_ttt = TictactoeBoard.new
       played_ttt.board_arr = ["X", " ", " ",
                               " ", " ", " ",
                               " ", " ", " "]
 
-      expect(comp_player.comp_move(played_ttt, ttt_rules)).to be_an_instance_of(TictactoeBoard)
+      expect(comp_player.ai_move(played_ttt, ttt_rules)).to be_an_instance_of(TictactoeBoard)
     end
 
     # it 'returns nil if comp move was not made' do
@@ -105,7 +105,7 @@ describe PlayerAi do
     #                           "O", "X", "O",
     #                           "O", "X", "O"]
 
-    #   expect(comp_player.comp_move(played_ttt, ttt_rules)).to eq nil
+    #   expect(comp_player.ai_move(played_ttt, ttt_rules)).to eq nil
     # end
   end
 
