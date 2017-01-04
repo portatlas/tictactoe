@@ -15,27 +15,33 @@ class TictactoeRules
   end
 
   # not true or false...
-  def won?(ttt_board, turn)
+  def winning_indices(ttt_board, turn)
     WIN_COMBOS.detect do |win_combo|
       (ttt_board.board_arr[win_combo[0]]  == turn && ttt_board.board_arr[win_combo[1]]  == turn && ttt_board.board_arr[win_combo[2]]  == turn )
     end
   end
 
+  def won?(board, turn)
+    winning_indices(board, turn) != nil
+  end
+
   def draw?(board, turn)
-    board.valid_slots == [] && won?(board, turn) == nil
+    board.valid_slots == [] && winning_indices(board, turn) == nil
   end
 
   def game_over?(board)
-    board.valid_slots == [] || won?(board, "X") || won?(board, "O") ? true : false
+    board.valid_slots == [] || winning_indices(board, "X") || winning_indices(board, "O") ? true : false
   end
 
   def winner(board, turn)
     if won?(board, turn)
-      "X"
-    elsif won?(board, turn)
-      puts "O"
-    elsif draw?(board, turn)
-      puts "It's a draw!"
+      winning_indices(board, turn).each do |index|
+        if board.board_arr[index] == turn.to_s
+          return turn
+        end
+      end
+    else
+      nil
     end
   end
 
