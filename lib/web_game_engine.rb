@@ -8,12 +8,12 @@ class WebGameEngine < GameEngine
   end
 
   def versus_user(current_board, player, user_input)
-    current_board = player.user_move(current_board, user_input)
+    current_board = current_board.move(user_input)
   end
 
   def versus_comp(current_board, rules, player_1, player_1_input, player_2)
-      current_board = player_1.user_move(current_board, player_1_input)
-      current_board = player_2.ai_move(current_board, rules)
+    current_board = current_board.move(player_1_input)
+    current_board = current_board.move(player_2.optimal_move(current_board, rules))
   end
 
 end

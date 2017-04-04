@@ -1,16 +1,20 @@
 #!/usr/bin/env ruby
 
 require './lib/console'
-require 'tictactoe_board'
+require 'board'
+require 'stringify_board'
+require 'tictactoe_board_state'
 require 'tictactoe_rules'
 require 'player_ai'
 require 'player_user'
 require 'console_game_engine'
 
+new_board = Board.new
 console = Console.new
-board = TictactoeBoard.new
+board_state = TictactoeBoardState.new(new_board.array)
 rules = TictactoeRules.new
-user_player = PlayerUser.new
+user_player = PlayerUser.new(ttt_board_state: board_state, ui: console, rules: rules)
 comp_player = PlayerAi.new
-new_game = ConsoleGameEngine.new({ttt_board: board, rules: rules, player_1: user_player, player_2: comp_player, ui: console})
+stringify_board = StringifyBoard.new
+new_game = ConsoleGameEngine.new({ttt_board_state: board_state, rules: rules, player_1: user_player, player_2: comp_player, ui: console, stringify_board: stringify_board})
 new_game.play
