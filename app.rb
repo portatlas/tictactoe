@@ -1,6 +1,7 @@
 require 'sinatra/base'
+require './lib/board'
 require './lib/tictactoe_rules'
-require './lib/tictactoe_board'
+require './lib/tictactoe_board_state'
 require './lib/player_user'
 require './lib/player_ai'
 require './lib/web_game_engine'
@@ -16,7 +17,7 @@ class TicTacToe < Sinatra::Base
   end
 
   get '/game' do
-    session[:board] = TictactoeBoard.new
+    session[:board] = TictactoeBoardState.new(Board.new.array)
     erb :game
   end
 
@@ -37,7 +38,7 @@ class TicTacToe < Sinatra::Base
 
     @player_input = params[:grid_position].to_i
 
-    if session[:board].valid_move?(@player_input)
+    if @game.rules.valid_move?(session[:board], @player_input)
       session[:message] = "Valid Move"
       if session[:game_mode] == 'player'
         session[:board] = @game.versus_user(session[:board], @game.player_1, @player_input)
